@@ -9,16 +9,12 @@ public class PlyrCtrlr : MonoBehaviour
     //Player Movement
     public float plyrSpd;
 
-    //Gravity
-    private float gravAmt;
-
     //Jump Dir
     private float jmpDir;
 
     void Awake()
     {
         plyrRgdBdy = GetComponent<Rigidbody2D>();
-        gravAmt = -9.8f;
         jmpDir = 1;
     }
 
@@ -41,9 +37,9 @@ public class PlyrCtrlr : MonoBehaviour
         if (collision.gameObject.CompareTag("GravSw"))
         {
             Debug.Log("Switch!");
-            gravAmt = gravAmt * -1;
-            jmpDir = jmpDir * -1;
-            Physics2D.gravity = new Vector2(0, gravAmt);
+            jmpDir *= -1;
+            plyrRgdBdy.gravityScale *= -1;
+            
         }
     }
 
