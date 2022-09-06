@@ -26,7 +26,7 @@ public class PlyrCtrlr : MonoBehaviour
         //Jump
         if(Input.GetKey(KeyCode.Space))
         {
-            plyrRgdBdy.velocity = new Vector2(plyrRgdBdy.velocity.x, plyrSpd) * jmpDir;
+            plyrRgdBdy.velocity = new Vector2(plyrRgdBdy.velocity.x * jmpDir, plyrSpd) * jmpDir;
         }
 
     }
