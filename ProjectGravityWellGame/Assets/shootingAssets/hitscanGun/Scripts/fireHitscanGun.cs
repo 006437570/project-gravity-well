@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fireGun : MonoBehaviour
+public class fireHitscanGun : MonoBehaviour
 {
 
     public Transform firePoint;
-    public GameObject bulletPrefab;
 
     void Update()
     {
@@ -20,7 +19,12 @@ public class fireGun : MonoBehaviour
     // Spawns bullter at firePoint
     void Shoot()
     {
-        Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        RaycastHit2D hitReg = Physics2D.Raycast(firePoint.position, firePoint.right);
+
+        if(hitReg)
+        {
+            Debug.Log(hitReg.transform.name);
+        }
     }
 
 }
