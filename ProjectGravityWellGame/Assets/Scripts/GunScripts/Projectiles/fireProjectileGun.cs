@@ -10,7 +10,7 @@ public class fireProjectileGun : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) //should add this to player movement instead then reference that here :)
+        if (Input.GetButtonDown("Fire1")) //should add this to player movement instead then reference that here :)
         {
             Debug.Log("Shooting!");
             Shoot();
