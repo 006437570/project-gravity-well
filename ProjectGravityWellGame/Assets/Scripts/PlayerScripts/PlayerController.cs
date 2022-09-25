@@ -29,15 +29,17 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        
+        input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
 
         playerRigid.AddForce(input * speed * Time.deltaTime);
 
         moving = (input.x != 0 || input.y != 0);
+
+        //Alternative Force: Attatches inputs to player object directly
+        //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
+        //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
 
         if (Input.GetButtonDown("Jump") && isTouchingGround)
         {
