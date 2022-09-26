@@ -20,12 +20,14 @@ public class GravitySwitch : MonoBehaviour
         {
             Debug.Log("Normalize!");
             rb.gravityScale = Math.Abs(rb.gravityScale);
+            //FindObjectOfType<PlayerController>().FlipY(rb);
         }
         // if hit background with GravR tag reverse Gravity
         if (collision.gameObject.CompareTag("GravR"))
         {
             Debug.Log("Reverse!");
             rb.gravityScale = -rb.gravityScale;
+           // FindObjectOfType<PlayerController>().FlipY(rb);
         }
     }
 
