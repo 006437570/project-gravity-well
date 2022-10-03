@@ -70,11 +70,17 @@ public class PlayerController : MonoBehaviour
 
     void Flip()
     {
+        /*
         Vector3 currentScale = gameObject.transform.localScale;
 
         currentScale.x *= -1;
 
         gameObject.transform.localScale = currentScale;
+        */
+
+        // the old code didn't rotate the direction of the gun shot
+        // this does. idk how :P
+        transform.Rotate(0f, 180f, 0f);
 
         facingRight = !facingRight;
     }
