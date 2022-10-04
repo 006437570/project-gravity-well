@@ -7,6 +7,10 @@ public class bulletProjectile : MonoBehaviour
 
     public float speed = 20f;
     public Rigidbody2D rb; //gives bullet rigidbody to give it physics
+    public int dmg = 1;
+
+    // Game Object for animation that plays when bullet hits something
+    // public GameObject hitDetectionAni;
 
     void Start()
     {
@@ -16,15 +20,18 @@ public class bulletProjectile : MonoBehaviour
     void OnTriggerEnter2D (Collider2D hitDetection)
     {
         Debug.Log(hitDetection.name); // Prints what projectile hit in debug console
-        
-        //Temp Code
-        //Change to if hit player or wall (destroy) if player do damage
-        if (hitDetection.gameObject.CompareTag("GravN") || hitDetection.gameObject.CompareTag("GravR"))
+
+        Enemy player = hitDetection.GetComponent<Enemy>();
+        if (player != null)
         {
+            player.calcDmg(dmg);
+            Destroy(gameObject);
         }
-        else
+        if (hitDetection.gameObject.CompareTag("Terrain") || (hitDetection.gameObject.CompareTag("Bullet")) )
         {
-        Destroy(gameObject); //Despawns bullet when colliding with a gameObject
+            Destroy(gameObject);
         }
+
+        //add feature to play hitDetectionAni when in contact
     }
 }
