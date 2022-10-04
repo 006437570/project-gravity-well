@@ -17,11 +17,13 @@ public class bulletProjectile : MonoBehaviour
         rb.velocity = transform.right * speed; //When player shoots bullet travels right
     }
 
+    //find a way to place this into new hitDetection script?
     void OnTriggerEnter2D (Collider2D hitDetection)
     {
         Debug.Log(hitDetection.name); // Prints what projectile hit in debug console
 
-        Enemy player = hitDetection.GetComponent<Enemy>();
+        PlayerHealth player = hitDetection.GetComponent<PlayerHealth>();
+        
         if (player != null)
         {
             player.calcDmg(dmg);
