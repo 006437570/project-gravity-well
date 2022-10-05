@@ -20,8 +20,6 @@ public class bulletProjectile : MonoBehaviour
     //find a way to place this into new hitDetection script?
     void OnTriggerEnter2D (Collider2D hitDetection)
     {
-        Debug.Log(hitDetection.name); // Prints what projectile hit in debug console
-
         PlayerHealth player = hitDetection.GetComponent<PlayerHealth>();
         
         if (player != null)
@@ -29,7 +27,7 @@ public class bulletProjectile : MonoBehaviour
             player.calcDmg(dmg);
             Destroy(gameObject);
         }
-        if (hitDetection.gameObject.CompareTag("Terrain") || (hitDetection.gameObject.CompareTag("Bullet")) )
+        if (hitDetection.gameObject.CompareTag("Terrain") || (hitDetection.gameObject.CompareTag("Projectile")) )
         {
             Destroy(gameObject);
         }

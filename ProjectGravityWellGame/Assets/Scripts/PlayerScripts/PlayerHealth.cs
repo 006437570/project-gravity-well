@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int currentHealth = 2; //subject to change
+    public int currentHealth = 2;
 
     // Death animation effect goes here when ready :)
-    //public GameObject deathAni;
+    // public GameObject deathAni;
 
     // Will calculate by subtracting currentHealth by damage amount
     public void calcDmg (int dmg)
@@ -25,7 +25,9 @@ public class PlayerHealth : MonoBehaviour
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
-        
-        Destroy(gameObject);
+
+        // When player dies it disables their movement until respawn
+        PlayerController pc = GetComponent<PlayerController>();
+        pc.enabled = false;
     }
 }

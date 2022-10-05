@@ -10,17 +10,20 @@ public class fireProjectileGun : MonoBehaviour
 
     void Update()
     {
+        //move to player controller
+        //melee when not holding gun
         if (Input.GetButtonDown("Fire1")) //should add this to player movement instead then reference that here :)
         {
-            Debug.Log("Shooting!");
             Shoot();
         }
     }
 
     // Spawns bullter at firePoint
-    void Shoot()
+    public void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
     }
 
 }
+
+//make this a script for every projectile weapon
