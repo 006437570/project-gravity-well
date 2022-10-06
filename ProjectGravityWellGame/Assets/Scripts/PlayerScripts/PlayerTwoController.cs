@@ -1,10 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
-
-public class PlayerController : MonoBehaviour
+public class PlayerTwoController : MonoBehaviour
 {
     Rigidbody2D playerRigid;
     Vector2 input;
@@ -23,13 +21,15 @@ public class PlayerController : MonoBehaviour
 
     bool facingRight = true;
 
+    private Vector2 var; 
+
     // Start is called before the first frame update
     void Awake()
     {
 
         playerRigid = GetComponent<Rigidbody2D>();
         movingspeed = 5f;
-        
+
     }
 
     // Update is called once per frame
@@ -37,39 +37,39 @@ public class PlayerController : MonoBehaviour
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
+        input = new Vector2(Input.GetAxis("HorizontalTwo") * speed, playerRigid.velocity.y);
 
-      //  playerRigid.AddForce(input * Time.deltaTime);
+          //playerRigid.AddForce(input * speed * Time.deltaTime);
 
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
+           inputHorizontal = Input.GetAxisRaw("HorizontalTwo");
 
-        
 
-        if (name == "PlayerOne")
-        {
-           
-            if (Input.GetKey(KeyCode.A)){
-                
-               playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
-               // playerRigid.AddForce(input * Time.deltaTime);
+        var = input * speed * Time.deltaTime;
+
+        movingspeed = var.x;
+
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+            playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
+              
             }
 
-            if  (Input.GetKey(KeyCode.D)){
-                playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
-              //  playerRigid.AddForce(input * Time.deltaTime);
-            }
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+            playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
+
         }
-        
+
        
-                if (inputHorizontal > 0 && !facingRight)
-                {
-            Flip();
-                }
-                if (inputHorizontal < 0 && facingRight)
-                {
+        if (inputHorizontal > 0 && !facingRight)
+        {
             Flip();
         }
-        
+        if (inputHorizontal < 0 && facingRight)
+        {
+            Flip();
+        }
+
 
 
         moving = (input.x != 0 || input.y != 0);
@@ -78,11 +78,12 @@ public class PlayerController : MonoBehaviour
         //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
         //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        if (Input.GetKey(KeyCode.RightShift) && isTouchingGround)
         {
+            Debug.Log("Player 2 Jump!");
             playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
         }
-
+        
     }
 
     void Flip()
