@@ -10,9 +10,8 @@ public class fireProjectileGun : MonoBehaviour
 
     void Update()
     {
-        //move to player controller
         //melee when not holding gun
-        if (Input.GetButtonDown("Fire1")) //should add this to player movement instead then reference that here :)
+        if (Input.GetButtonDown("Fire1"))
         {
             Shoot();
         }
@@ -25,5 +24,3 @@ public class fireProjectileGun : MonoBehaviour
     }
 
 }
-
-//make this a script for every projectile weapon

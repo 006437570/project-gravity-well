@@ -26,8 +26,8 @@ public class PlayerHealth : MonoBehaviour
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
 
-        // When player dies it disables their movement until respawn
-        PlayerController pc = GetComponent<PlayerController>();
-        pc.enabled = false;
+        Destroy(gameObject);
+        mapManager.instance.playerRespawn(mapManager.instance.randomRespawn(mapManager.instance.playerSP1, mapManager.instance.playerSP2, mapManager.instance.playerSP3, mapManager.instance.playerSP4));
+
     }
 }
