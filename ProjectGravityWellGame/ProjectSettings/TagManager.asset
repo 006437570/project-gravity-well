@@ -6,7 +6,11 @@ TagManager:
   tags:
   - GravR
   - GravN
-  - Bullet
+  - Projectile
+  - GravSw
+  - Terrain
+  - PlayerSpawner
+  - ItemSpawner
   layers:
   - Default
   - TransparentFX
