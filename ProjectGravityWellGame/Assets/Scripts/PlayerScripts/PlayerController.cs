@@ -22,13 +22,17 @@ public class PlayerController : MonoBehaviour
 
     bool facingRight = true;
 
+    //Damage
+    PlayerHealth takeDmg;
+    public int dmgAmount;
+
     // Start is called before the first frame update
     void Awake()
     {
-
         playerRigid = GetComponent<Rigidbody2D>();
-        
-        
+        takeDmg = GetComponent<PlayerHealth>();
+        dmgAmount = 1;
+
     }
 
     // Update is called once per frame
@@ -65,6 +69,15 @@ public class PlayerController : MonoBehaviour
         {
             playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
         }
+
+        /*
+        //Test Damage
+        if(Input.GetKeyDown(KeyCode.K))
+        {
+            takeDmg.calcDmg(dmgAmount);
+            Debug.Log("Damage!");
+        }
+        */
 
     }
 
@@ -129,6 +142,13 @@ public class PlayerController : MonoBehaviour
                 gameObject.transform.localScale = currentScale;
                 jumpSpeed = -jumpSpeed;
             }
+        }
+
+        //Damage by projectile
+        if (collision.gameObject.CompareTag("Projectile"))
+        {
+            takeDmg.calcDmg(dmgAmount);
+            Debug.Log("Test Damage!");
         }
     }
 }
