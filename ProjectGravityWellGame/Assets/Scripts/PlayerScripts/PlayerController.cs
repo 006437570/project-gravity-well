@@ -2,13 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    public InputAction playerControler;
+    
+
     Rigidbody2D playerRigid;
     Vector2 input;
-    public float dirX, dirY, movingspeed;
+    Vector2 moveDir = Vector2.zero;
+    public float movingspeed;
     public float speed;
     bool moving = false;
 
@@ -31,20 +35,37 @@ public class PlayerController : MonoBehaviour
         movingspeed = 5f;
         
     }
+    private void OnEnable()
+    {
+        playerControler.Enable();
+       
+    }
+    private void OnDisable()
+    {
+        playerControler.Disable();
+        
+    }
+    private void FixedUpdate()
+    {
+        playerRigid.velocity = new Vector2(moveDir.x * speed ,playerRigid.velocity.y);
+    }
 
     // Update is called once per frame
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
+        //input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
 
       //  playerRigid.AddForce(input * Time.deltaTime);
 
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
+      //  inputHorizontal = Input.GetAxisRaw("Horizontal");
+
+        moveDir = playerControler.ReadValue<Vector2>();
 
         
-
+        
+            /*
         if (name == "PlayerOne")
         {
            
@@ -59,7 +80,7 @@ public class PlayerController : MonoBehaviour
               //  playerRigid.AddForce(input * Time.deltaTime);
             }
         }
-        
+        */
        
                 if (inputHorizontal > 0 && !facingRight)
                 {
@@ -78,9 +99,24 @@ public class PlayerController : MonoBehaviour
         //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
         //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
 
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        if (name == "PlayerOne")
         {
-            playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+
+            if (Input.GetButtonDown("Jump") && isTouchingGround)
+            {
+                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+            }
+
+        }
+
+        if (name == "PlayerTwo")
+        {
+
+            if (Input.GetButtonDown("JumpTwo") && isTouchingGround)
+            {
+                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+            }
+
         }
 
     }
