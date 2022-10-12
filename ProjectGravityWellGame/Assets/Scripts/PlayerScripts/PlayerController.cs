@@ -23,15 +23,16 @@ public class PlayerController : MonoBehaviour
     bool facingRight = true;
 
     //Damage
+    /*
     PlayerHealth takeDmg;
-    public int dmgAmount;
+    public int dmgAmount;*/
 
     // Start is called before the first frame update
     void Awake()
     {
         playerRigid = GetComponent<Rigidbody2D>();
-        takeDmg = GetComponent<PlayerHealth>();
-        dmgAmount = 1;
+        /*takeDmg = GetComponent<PlayerHealth>();
+        dmgAmount = 1;*/
 
     }
 
@@ -144,11 +145,13 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        /*
         //Damage by projectile
         if (collision.gameObject.CompareTag("Projectile"))
         {
             takeDmg.calcDmg(dmgAmount);
             Debug.Log("Test Damage!");
         }
+        */
     }
 }

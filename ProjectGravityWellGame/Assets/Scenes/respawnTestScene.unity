@@ -1017,11 +1017,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 456a55d85e63e481e88eaa99c673c77a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSP1: {fileID: 1060143482}
-  playerSP2: {fileID: 1607793469}
-  playerSP3: {fileID: 863630680}
-  playerSP4: {fileID: 1551271359}
-  playerPrefab: {fileID: 5843712427775634659, guid: 5e9ae636a05414410baf82f4576f4c8f, type: 3}
+  pSP1: {fileID: 1060143482}
+  pSP2: {fileID: 1607793469}
+  pSP3: {fileID: 863630680}
+  pSP4: {fileID: 1551271359}
 --- !u!4 &2138822310 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 486851616076921, guid: 5e9ae636a05414410baf82f4576f4c8f, type: 3}
