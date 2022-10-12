@@ -17,7 +17,7 @@ public class fireProjectileGun : MonoBehaviour
         }
     }
 
-    // Spawns bullter at firePoint
+    // Spawns bullet at firePoint
     public void Shoot()
     {
         Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
