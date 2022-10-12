@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 moveDir = Vector2.zero;
         
-    // For ground checker
+    // For ground checker.
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
