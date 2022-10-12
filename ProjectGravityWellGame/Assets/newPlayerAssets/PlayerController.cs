@@ -10,15 +10,13 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 5f;
     public float jumpSpeed;
 
-    public PlayerInputActions playerControls;
+    private InputActionAsset playerControls;
+    private InputActionMap player;
+    private InputAction move;
 
     Vector2 moveDir = Vector2.zero;
-
-    private InputAction move;
-    private InputAction jump;
-    
-    Vector2 input;
-    
+        
+    // For ground checker
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -28,24 +26,22 @@ public class PlayerController : MonoBehaviour
 
     private void OnEnable()
     {
-        move = playerControls.Player.Move;
-        move.Enable();
-
-        jump = playerControls.Player.Jump;
-        jump.Enable();
-        jump.performed += Jump;
+        player.FindAction("Fire").started += Fire;
+        player.FindAction("GravSwitch").started += GravSwitch;
+        player.FindAction("Jump").started += Jump;
+        move = player.FindAction("Move");
+        player.Enable();
     }
 
     private void OnDisable()
     {
-        move.Disable();        
-        jump.Disable();
+        player.Disable();
     }
 
     void Awake()
     {
-        //rb = GetComponent<Rigidbody2D>();
-        playerControls = new PlayerInputActions();
+        playerControls = this.GetComponent<PlayerInput>().actions;
+        player = playerControls.FindActionMap("Player");
     }
 
     private void FixedUpdate()
@@ -53,13 +49,12 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(moveDir.x * moveSpeed,rb.velocity.y);
     }
 
-    // Update is called once per frame
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        //Flips direction player faces based on horizontal input
         moveDir = move.ReadValue<Vector2>();
-       
         if (moveDir.x > 0 && !facingRight)
         {
             flipX();
@@ -68,21 +63,22 @@ public class PlayerController : MonoBehaviour
         {
             flipX();
         }
-        
-        //Alternative Force: Attatches inputs to player object directly
-        //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
-        //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
-        
-        // Flips players gravity and flips them upside down
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            rb.gravityScale = -rb.gravityScale;
-            jumpSpeed = -jumpSpeed;
-            flipY();
-        }
-
     }
 
+    private void Fire(InputAction.CallbackContext context)
+    {
+        Debug.Log("Shooting");
+    }
+
+    // Player reverses their gravity
+    private void GravSwitch(InputAction.CallbackContext context)
+    {
+        rb.gravityScale = -rb.gravityScale;
+        jumpSpeed = -jumpSpeed;
+        flipY();
+    }
+
+    // Player jumps
     private void Jump(InputAction.CallbackContext context)
     {
         if (isTouchingGround)
