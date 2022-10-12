@@ -6,20 +6,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    public InputAction playerControler;
-    
-
-    Rigidbody2D playerRigid;
-    Vector2 input;
-    Vector2 moveDir = Vector2.zero;
-    public float movingspeed;
-    public float speed;
-    bool moving = false;
-
-    float inputHorizontal;
-
+    public Rigidbody2D rb;
+    public float moveSpeed = 5f;
     public float jumpSpeed;
 
+    public PlayerInputActions playerControls;
+
+    Vector2 moveDir = Vector2.zero;
+
+    private InputAction move;
+    private InputAction jump;
+    
+    Vector2 input;
+    
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -27,27 +26,31 @@ public class PlayerController : MonoBehaviour
 
     bool facingRight = true;
 
-    // Start is called before the first frame update
-    void Awake()
-    {
-
-        playerRigid = GetComponent<Rigidbody2D>();
-        movingspeed = 5f;
-        
-    }
     private void OnEnable()
     {
-        playerControler.Enable();
-       
+        move = playerControls.Player.Move;
+        move.Enable();
+
+        jump = playerControls.Player.Jump;
+        jump.Enable();
+        jump.performed += Jump;
     }
+
     private void OnDisable()
     {
-        playerControler.Disable();
-        
+        move.Disable();        
+        jump.Disable();
     }
+
+    void Awake()
+    {
+        //rb = GetComponent<Rigidbody2D>();
+        playerControls = new PlayerInputActions();
+    }
+
     private void FixedUpdate()
     {
-        playerRigid.velocity = new Vector2(moveDir.x * speed ,playerRigid.velocity.y);
+        rb.velocity = new Vector2(moveDir.x * moveSpeed,rb.velocity.y);
     }
 
     // Update is called once per frame
@@ -55,133 +58,51 @@ public class PlayerController : MonoBehaviour
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        //input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
-
-      //  playerRigid.AddForce(input * Time.deltaTime);
-
-      //  inputHorizontal = Input.GetAxisRaw("Horizontal");
-
-        moveDir = playerControler.ReadValue<Vector2>();
-
-        
-        
-            /*
-        if (name == "PlayerOne")
-        {
-           
-            if (Input.GetKey(KeyCode.A)){
-                
-               playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
-               // playerRigid.AddForce(input * Time.deltaTime);
-            }
-
-            if  (Input.GetKey(KeyCode.D)){
-                playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
-              //  playerRigid.AddForce(input * Time.deltaTime);
-            }
-        }
-        */
+        moveDir = move.ReadValue<Vector2>();
        
-                if (inputHorizontal > 0 && !facingRight)
-                {
-            Flip();
-                }
-                if (inputHorizontal < 0 && facingRight)
-                {
-            Flip();
+        if (moveDir.x > 0 && !facingRight)
+        {
+            flipX();
+        }
+        if (moveDir.x < 0 && facingRight)
+        {
+            flipX();
         }
         
-
-
-        moving = (input.x != 0 || input.y != 0);
-
         //Alternative Force: Attatches inputs to player object directly
         //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
         //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
-
-        if (name == "PlayerOne")
+        
+        // Flips players gravity and flips them upside down
+        if (Input.GetKeyDown(KeyCode.Q))
         {
-
-            if (Input.GetButtonDown("Jump") && isTouchingGround)
-            {
-                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
-            }
-
-        }
-
-        if (name == "PlayerTwo")
-        {
-
-            if (Input.GetButtonDown("JumpTwo") && isTouchingGround)
-            {
-                playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
-            }
-
+            rb.gravityScale = -rb.gravityScale;
+            jumpSpeed = -jumpSpeed;
+            flipY();
         }
 
     }
 
-    void Flip()
+    private void Jump(InputAction.CallbackContext context)
     {
-        /*
-        Vector3 currentScale = gameObject.transform.localScale;
+        if (isTouchingGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+    }
 
-        currentScale.x *= -1;
-
-        gameObject.transform.localScale = currentScale;
-        */
-
-        // the old code didn't rotate the direction of the gun shot
-        // this does. idk how :P
+    // Flips player horizontally
+    void flipX()
+    {
         transform.Rotate(0f, 180f, 0f);
-
         facingRight = !facingRight;
     }
-    /*
-    public void FlipY(Rigidbody2D rb, Collision2D collision)
+
+    // Flips player vertically
+    void flipY()
     {
         Vector3 currentScale = gameObject.transform.localScale;
-
-
-        if (collision.gameObject.CompareTag("GravN"))
-        {
-            if (playerRigid.position.y < 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-         if (collision.gameObject.CompareTag("GravR"))
-        {
-            if (playerRigid.position.y > 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-    }
-    */
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Vector3 currentScale = gameObject.transform.localScale;
-
-
-        if (collision.gameObject.CompareTag("GravN"))
-        {
-            if (playerRigid.position.y > 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-        if (collision.gameObject.CompareTag("GravR"))
-        {
-            if (playerRigid.position.y < 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-                jumpSpeed = -jumpSpeed;
-            }
-        }
+        currentScale.y *= -1;
+        gameObject.transform.localScale =  currentScale;
     }
 }
