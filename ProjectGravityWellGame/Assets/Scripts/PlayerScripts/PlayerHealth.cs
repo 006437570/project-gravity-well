@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int currentHealth = 2;
+    public int maxHealth = 2;
+    public int currentHealth;
 
     // Death animation effect goes here when ready :)
     // public GameObject deathAni;
+
+    private void Awake()
+    {
+        currentHealth = maxHealth;
+    }
 
     // Will calculate by subtracting currentHealth by damage amount
     public void calcDmg (int dmg)
@@ -26,8 +32,12 @@ public class PlayerHealth : MonoBehaviour
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
 
-        Destroy(gameObject);
-        mapManager.instance.playerRespawn(mapManager.instance.randomRespawn(mapManager.instance.playerSP1, mapManager.instance.playerSP2, mapManager.instance.playerSP3, mapManager.instance.playerSP4));
-
+        PlayerController pc = GetComponent<PlayerController>();
+        pc.enabled = false;
+        //add time stop
+        mapManager.instance.playerRespawn(mapManager.instance.randomRespawn(mapManager.instance.pSP1, mapManager.instance.pSP2, mapManager.instance.pSP3, mapManager.instance.pSP4), gameObject);
+        //add invul period
+        pc.enabled = true;
+        currentHealth = maxHealth;
     }
 }

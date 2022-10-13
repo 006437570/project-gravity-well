@@ -2,20 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    Rigidbody2D playerRigid;
-    Vector2 input;
-    public float dirX, dirY, movingspeed;
-    public float speed;
-    bool moving = false;
-
-    float inputHorizontal;
-
+    public Rigidbody2D rb;
+    public float moveSpeed = 5f;
     public float jumpSpeed;
 
+    private InputActionAsset playerControls;
+    private InputActionMap player;
+    private InputAction move;
+
+    Vector2 moveDir = Vector2.zero;
+        
+    // For ground checker.
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
@@ -23,129 +24,81 @@ public class PlayerController : MonoBehaviour
 
     bool facingRight = true;
 
-    // Start is called before the first frame update
-    void Awake()
+    private void OnEnable()
     {
-
-        playerRigid = GetComponent<Rigidbody2D>();
-        movingspeed = 5f;
-        
+        player.FindAction("Fire").started += Fire;
+        player.FindAction("GravSwitch").started += GravSwitch;
+        player.FindAction("Jump").started += Jump;
+        move = player.FindAction("Move");
+        player.Enable();
     }
 
-    // Update is called once per frame
+    private void OnDisable()
+    {
+        player.Disable();
+    }
+
+    void Awake()
+    {
+        playerControls = this.GetComponent<PlayerInput>().actions;
+        player = playerControls.FindActionMap("Player");
+    }
+
+    private void FixedUpdate()
+    {
+        rb.velocity = new Vector2(moveDir.x * moveSpeed,rb.velocity.y);
+    }
+
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
-        input = new Vector2(Input.GetAxis("Horizontal") * speed, playerRigid.velocity.y);
-
-      //  playerRigid.AddForce(input * Time.deltaTime);
-
-        inputHorizontal = Input.GetAxisRaw("Horizontal");
-
-        
-
-        if (name == "PlayerOne")
+        //Flips direction player faces based on horizontal input
+        moveDir = move.ReadValue<Vector2>();
+        if (moveDir.x > 0 && !facingRight)
         {
-           
-            if (Input.GetKey(KeyCode.A)){
-                
-               playerRigid.velocity = new Vector2(-speed, playerRigid.velocity.y);
-               // playerRigid.AddForce(input * Time.deltaTime);
-            }
-
-            if  (Input.GetKey(KeyCode.D)){
-                playerRigid.velocity = new Vector2(speed, playerRigid.velocity.y);
-              //  playerRigid.AddForce(input * Time.deltaTime);
-            }
+            flipX();
         }
-        
-       
-                if (inputHorizontal > 0 && !facingRight)
-                {
-            Flip();
-                }
-                if (inputHorizontal < 0 && facingRight)
-                {
-            Flip();
-        }
-        
-
-
-        moving = (input.x != 0 || input.y != 0);
-
-        //Alternative Force: Attatches inputs to player object directly
-        //playerRigid.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, playerRigid.velocity.y);
-        //moving = (playerRigid.velocity.x != 0 || playerRigid.velocity.y != 0);
-
-        if (Input.GetButtonDown("Jump") && isTouchingGround)
+        if (moveDir.x < 0 && facingRight)
         {
-            playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+            flipX();
         }
-
     }
 
-    void Flip()
+    private void Fire(InputAction.CallbackContext context)
     {
-        /*
-        Vector3 currentScale = gameObject.transform.localScale;
+        Debug.Log("Shooting");
+    }
 
-        currentScale.x *= -1;
+    // Player reverses their gravity
+    private void GravSwitch(InputAction.CallbackContext context)
+    {
+        rb.gravityScale = -rb.gravityScale;
+        jumpSpeed = -jumpSpeed;
+        flipY();
+    }
 
-        gameObject.transform.localScale = currentScale;
-        */
+    // Player jumps
+    private void Jump(InputAction.CallbackContext context)
+    {
+        if (isTouchingGround)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+        }
+    }
 
-        // the old code didn't rotate the direction of the gun shot
-        // this does. idk how :P
+    // Flips player horizontally
+    void flipX()
+    {
         transform.Rotate(0f, 180f, 0f);
-
         facingRight = !facingRight;
     }
-    /*
-    public void FlipY(Rigidbody2D rb, Collision2D collision)
+
+    // Flips player vertically
+    void flipY()
     {
         Vector3 currentScale = gameObject.transform.localScale;
-
-
-        if (collision.gameObject.CompareTag("GravN"))
-        {
-            if (playerRigid.position.y < 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-         if (collision.gameObject.CompareTag("GravR"))
-        {
-            if (playerRigid.position.y > 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-    }
-    */
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Vector3 currentScale = gameObject.transform.localScale;
-
-
-        if (collision.gameObject.CompareTag("GravN"))
-        {
-            if (playerRigid.position.y > 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-            }
-        }
-        if (collision.gameObject.CompareTag("GravR"))
-        {
-            if (playerRigid.position.y < 0)
-            {
-                currentScale.y *= -1;
-                gameObject.transform.localScale = currentScale;
-                jumpSpeed = -jumpSpeed;
-            }
-        }
+        currentScale.y *= -1;
+        gameObject.transform.localScale =  currentScale;
     }
 }
