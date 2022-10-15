@@ -13,48 +13,18 @@ public class GravitySwitch : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
+    // Probably switch back to gravSwitch
     private void OnTriggerEnter2D(Collider2D collision)
     {
         // If hits background with GravN tag normalize Gravity
         if (collision.gameObject.CompareTag("GravN"))
         {
-            Debug.Log("Normalize!");
             rb.gravityScale = Math.Abs(rb.gravityScale);
-            //FindObjectOfType<PlayerController>().FlipY(rb);
         }
         // if hit background with GravR tag reverse Gravity
         if (collision.gameObject.CompareTag("GravR"))
         {
-            Debug.Log("Reverse!");
             rb.gravityScale = -rb.gravityScale;
-           // FindObjectOfType<PlayerController>().FlipY(rb);
-        }
-    }
-
-}
-
-/* OLD CODE
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class GravitySwitch : MonoBehaviour
-{
-    private Rigidbody2D rgdBdy;
-
-    private void Awake()
-    {
-        rgdBdy = GetComponent<Rigidbody2D>();
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("GravSw"))
-        {
-            Debug.Log("Switch!");
-            rgdBdy.gravityScale *= -1;
-
         }
     }
 }
-*/

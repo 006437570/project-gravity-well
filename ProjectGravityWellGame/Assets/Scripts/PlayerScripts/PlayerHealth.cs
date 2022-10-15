@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerHealth : MonoBehaviour
 {
+    public pickUpDropFire pUDF;
+
     public int maxHealth = 2;
     public int currentHealth;
 
@@ -23,6 +25,7 @@ public class PlayerHealth : MonoBehaviour
         // If the players health hits zero or less, then player dies
         if (currentHealth <= 0)
         {
+            pUDF.dropDead();
             playerDeath();
         }
     }
@@ -31,7 +34,6 @@ public class PlayerHealth : MonoBehaviour
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
-
         PlayerController pc = GetComponent<PlayerController>();
         pc.enabled = false;
         //add time stop
