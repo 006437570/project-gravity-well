@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7164165843166681462}
   - component: {fileID: 7164165843166681417}
   - component: {fileID: 7164165843166681416}
+  - component: {fileID: 751166567241636417}
   m_Layer: 0
   m_Name: Assault Rifle 2
   m_TagString: Weapon
@@ -137,6 +138,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firepoint: {fileID: 7164165844512407777}
   bullet: {fileID: 6270052310437710564, guid: 92b68a0b345024c7f8ab771f9ca0af92, type: 3}
+--- !u!114 &751166567241636417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7164165843166681419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf02643d4d9b14a729482d172badd1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: 0
+  timeToDespawn: 30
+  countDown: 0
 --- !u!1 &7164165844512407776
 GameObject:
   m_ObjectHideFlags: 0

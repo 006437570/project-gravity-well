@@ -7,10 +7,8 @@ public class mapManager : MonoBehaviour
     public static mapManager instance;
 
     // The spawns points that are available on the map
-    public Transform pSP1;
-    public Transform pSP2;
-    public Transform pSP3;
-    public Transform pSP4;
+    [SerializeField]
+    public Transform pSP1, pSP2, pSP3, pSP4;
 
     // Will make this easy to reference by other scripts
     private void Awake()

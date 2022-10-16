@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7818513814748267580}
   - component: {fileID: 6721608487526832295}
   - component: {fileID: -7886173818239759652}
+  - component: {fileID: -8517824352688987477}
   m_Layer: 0
   m_Name: Handgun
   m_TagString: Weapon
@@ -137,6 +138,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firepoint: {fileID: 1486857581936267140}
   bullet: {fileID: 6270052310437710564, guid: 92b68a0b345024c7f8ab771f9ca0af92, type: 3}
+--- !u!114 &-8517824352688987477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5082692981765870833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf02643d4d9b14a729482d172badd1fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  equipped: 0
+  timeToDespawn: 30
+  countDown: 0
 --- !u!1 &7000114331532472601
 GameObject:
   m_ObjectHideFlags: 0

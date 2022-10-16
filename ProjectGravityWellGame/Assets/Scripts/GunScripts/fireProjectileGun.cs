@@ -14,7 +14,5 @@ public class fireProjectileGun : MonoBehaviour
     public void Shoot()
     {
         Instantiate(bullet, firepoint.position, firepoint.rotation);
-        Debug.Log("Firing");
     }
-
 }

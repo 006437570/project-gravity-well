@@ -19,7 +19,7 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private Transform gunHolder;
 
-    // References to weapon prefabs
+    // References to weapon prefab & components
     [SerializeField]
     private GameObject inHandItem;
     [SerializeField]
@@ -27,8 +27,11 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private Collider2D coll;
 
+    // Scripts attached to the gun
     [SerializeField]
     private fireProjectileGun gunScript;
+    [SerializeField]
+    private weaponDespawn despawnScript;
 
     [SerializeField]
     private int numInRange = 0;
@@ -65,9 +68,7 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = false;
             }
             coll.enabled = true;
-            Debug.Log("Dying so dropping");
         }
-        return;
     }
 
     // If player is in range of a weapon sets inRange to true
@@ -84,6 +85,7 @@ public class pickUpDropFire : MonoBehaviour
                 rb = collider.GetComponent<Rigidbody2D>();
                 coll = collider.GetComponent<CapsuleCollider2D>();
                 gunScript = collider.GetComponent<fireProjectileGun>();
+                despawnScript = collider.GetComponent<weaponDespawn>();
             }
         }
         
@@ -102,6 +104,7 @@ public class pickUpDropFire : MonoBehaviour
                     rb = null;
                     coll = null;
                     gunScript = null;
+                    despawnScript = null;
                 }
             }
         }
@@ -114,7 +117,7 @@ public class pickUpDropFire : MonoBehaviour
         if (!weaponSlotFull && inRange)
         {
             weaponSlotFull = true;
-            inHandItem.transform.position = Vector2.zero;
+            inHandItem.transform.position = Vector3.zero;
             inHandItem.transform.rotation = Quaternion.identity;
             inHandItem.transform.SetParent(gunHolder.transform, false);
             if (rb != null)
@@ -122,7 +125,8 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = true;
             }
             coll.enabled = false;
-            Debug.Log("Picking up");
+            // When holding item 
+            despawnScript.equipped = true;
             return;
         }
         // If player has a weapon equipped, then drop weapon
@@ -136,11 +140,14 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = false;
             }
             coll.enabled = true;
+            // When dropped begin despawn timer for weapon
+            despawnScript.equipped = false;
+            despawnScript.countDown = despawnScript.timeToDespawn;
             return;
         }
     }
 
-    // Fires gun!
+    // Fires gun from fireProjectileGun.cs
     private void Fire(InputAction.CallbackContext context)
     {
         if (weaponSlotFull)

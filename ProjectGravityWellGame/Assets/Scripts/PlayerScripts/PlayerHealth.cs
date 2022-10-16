@@ -25,7 +25,7 @@ public class PlayerHealth : MonoBehaviour
         // If the players health hits zero or less, then player dies
         if (currentHealth <= 0)
         {
-            pUDF.dropDead();
+            pUDF.dropDead(); //drops weapon
             playerDeath();
         }
     }
