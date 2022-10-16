@@ -69,6 +69,8 @@ public class pickUpDropFire : MonoBehaviour
             }
             coll.enabled = true;
         }
+        despawnScript.equipped = false;
+        despawnScript.countDown = despawnScript.timeToDespawn;
     }
 
     // If player is in range of a weapon sets inRange to true
