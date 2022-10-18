@@ -1,7 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+
+//Find way to give weapon horizontal velocity when dropping.
 
 public class pickUpDropFire : MonoBehaviour
 {
@@ -13,7 +13,7 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private bool inRange = false;
     [SerializeField]
-    private bool weaponSlotFull = false;
+    public bool weaponSlotFull = false;
 
     // Reference to gunHolder on player prefab
     [SerializeField]
@@ -111,6 +111,34 @@ public class pickUpDropFire : MonoBehaviour
             }
         }
     }
+    private void OnTriggerStay2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("Weapon"))
+        {
+            if (numInRange > 0 && !weaponSlotFull)
+            {
+                inHandItem = collider.gameObject;
+                rb = collider.GetComponent<Rigidbody2D>();
+                coll = collider.GetComponent<CapsuleCollider2D>();
+                gunScript = collider.GetComponent<fireProjectileGun>();
+                despawnScript = collider.GetComponent<weaponDespawn>();
+            }
+        }
+    }
+
+    private void Update()
+    {
+        //Bug fix that kept weapon from staying in the correct while in player hands
+        if (weaponSlotFull)
+        {
+            if (inHandItem.transform.position != gunHolder.transform.position || inHandItem.transform.rotation != gunHolder.transform.rotation)
+            {
+                inHandItem.transform.position = gunHolder.transform.position;
+                inHandItem.transform.rotation = gunHolder.transform.rotation;
+            }
+
+        }
+    }
 
     private void Interact(InputAction.CallbackContext context)
     {
@@ -154,7 +182,7 @@ public class pickUpDropFire : MonoBehaviour
     {
         if (weaponSlotFull)
         {
-            gunScript.Shoot();
+            gunScript.Shoot(gameObject);
         }
     }
 }

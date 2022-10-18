@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class fireProjectileGun : MonoBehaviour
@@ -11,8 +9,9 @@ public class fireProjectileGun : MonoBehaviour
     [SerializeField]
     public GameObject bullet;
 
-    public void Shoot()
+    public void Shoot(GameObject player)
     {
         Instantiate(bullet, firepoint.position, firepoint.rotation);
+        Debug.Log(player.GetComponent<PlayerHealth>().playerID);
     }
 }
