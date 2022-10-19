@@ -9,8 +9,7 @@ public class fireProjectileGun : MonoBehaviour
 
     public void Shoot(GameObject playerAttacker)
     {   
-        GameObject bullet = bulletPrefab;
-        bullet.GetComponent<bulletProjectile>().playerAttacker = playerAttacker;
-        Instantiate(bullet, firepoint.position, firepoint.rotation);
+        bulletPrefab.GetComponent<bulletProjectile>().playerAttacker = playerAttacker;
+        Instantiate(bulletPrefab, firepoint.position, firepoint.rotation);
     }
 }
