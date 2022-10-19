@@ -68,12 +68,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.M))
         {
-            calcDmg(maxHealth);
+            calcDmg(maxHealth, gameObject);
         }
     }
 
     // Will calculate by subtracting currentHealth by damage amount
-    public void calcDmg (int dmg)
+    public void calcDmg (int dmg, GameObject playerAttacker)
     {
         if (playerDead) return; //if player is already dead, then do nothing.
 
@@ -81,6 +81,10 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0) // If the players health hits zero or less, then player dies
         {
             if (pUDF.weaponSlotFull) {pUDF.dropDead();} //drops weapon if holding one
+            if (playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
+            {
+                playerAttacker.GetComponent<PlayerHealth>().killCounter++;
+            }
             playerDeath(); //kills player
         }
     }
@@ -94,6 +98,7 @@ public class PlayerHealth : MonoBehaviour
         coll.enabled = false;
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
+        deathCounter++;
     }
 
     void playerRespawn()
