@@ -11,6 +11,7 @@ TagManager:
   - Terrain
   - PlayerSpawner
   - ItemSpawner
+  - Weapon
   layers:
   - Default
   - TransparentFX

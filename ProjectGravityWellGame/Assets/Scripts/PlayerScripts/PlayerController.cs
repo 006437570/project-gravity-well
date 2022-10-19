@@ -1,19 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float moveSpeed = 5f;
-    public float jumpSpeed;
 
+    // Movement variables
+    [SerializeField]
+    public float moveSpeed;
+    [SerializeField]
+    public float jumpSpeed;
+    [SerializeField]
+    private int numFlips;
+
+    // For input system
     private InputActionAsset playerControls;
     private InputActionMap player;
     private InputAction move;
 
+    // Move direction variable
     Vector2 moveDir = Vector2.zero;
         
     // For ground checker.
@@ -22,11 +29,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     private bool isTouchingGround;
 
+    // x Direction player faces
     bool facingRight = true;
 
     private void OnEnable()
     {
-        player.FindAction("Fire").started += Fire;
         player.FindAction("GravSwitch").started += GravSwitch;
         player.FindAction("Jump").started += Jump;
         move = player.FindAction("Move");
@@ -38,6 +45,7 @@ public class PlayerController : MonoBehaviour
         player.Disable();
     }
 
+    // On start defines input manager systems
     void Awake()
     {
         playerControls = this.GetComponent<PlayerInput>().actions;
@@ -53,6 +61,11 @@ public class PlayerController : MonoBehaviour
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
 
+        if (isTouchingGround)
+        {
+            numFlips = 0;
+        }
+
         //Flips direction player faces based on horizontal input
         moveDir = move.ReadValue<Vector2>();
         if (moveDir.x > 0 && !facingRight)
@@ -65,17 +78,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void Fire(InputAction.CallbackContext context)
-    {
-        Debug.Log("Shooting");
-    }
-
     // Player reverses their gravity
     private void GravSwitch(InputAction.CallbackContext context)
     {
-        rb.gravityScale = -rb.gravityScale;
-        jumpSpeed = -jumpSpeed;
-        flipY();
+        if (numFlips < 2)
+        {
+            numFlips++;
+            rb.gravityScale = -rb.gravityScale;
+            jumpSpeed = -jumpSpeed;
+            flipY();
+        }
     }
 
     // Player jumps
@@ -97,8 +109,6 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.y *= -1;
-        gameObject.transform.localScale =  currentScale;
+        transform.Rotate(180f, 0f, 0f);
     }
 }
