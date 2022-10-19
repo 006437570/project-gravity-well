@@ -16,13 +16,8 @@ public class GravitySwitch : MonoBehaviour
     // Probably switch back to gravSwitch
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        // If hits background with GravN tag normalize Gravity
-        if (collision.gameObject.CompareTag("GravN"))
-        {
-            rb.gravityScale = Math.Abs(rb.gravityScale);
-        }
         // if hit background with GravR tag reverse Gravity
-        if (collision.gameObject.CompareTag("GravR"))
+        if (collision.gameObject.CompareTag("GravSw"))
         {
             rb.gravityScale = -rb.gravityScale;
         }
