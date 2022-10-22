@@ -34,9 +34,12 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingPlayer;
     private bool isJumping;
 
-
     // x Direction player faces
     bool facingRight = true;
+
+    // Sound Effects
+    [SerializeField] private AudioSource GravitySwitch;
+
 
     private void OnEnable()
     {
@@ -108,7 +111,6 @@ public class PlayerController : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             isJumping = true;
-            Debug.Log("Jumping");
         }
     }
 
@@ -122,6 +124,7 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
+        GravitySwitch.Play();
         transform.Rotate(180f, 0f, 0f);
     }
 
