@@ -21,13 +21,13 @@ public class fireProjectileGun : MonoBehaviour
 
     public void Shoot(GameObject playerAttacker)
     {
-        ammo--; // decreases ammo by 1 after shooting
         if(ammo > 0) // checks if ammo is greater than 0 if so then shoot
         {
             BlickySoundEffect.Play();
             GameObject bullet = bulletPrefab;
             bullet.GetComponent<bulletProjectile>().playerAttacker = playerAttacker;
             Instantiate(bullet, firepoint.position, firepoint.rotation);
+            ammo--; // decreases ammo by 1 after shooting
         }
         else // if there is no more ammo in the gun then play a sound to indicate that there are no more bullets
         {
