@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7880471662396448510}
   - component: {fileID: 7880471662396448497}
   - component: {fileID: 7938314155565084101}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -217,8 +217,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pUDF: {fileID: 7938314155565084101}
+  playerID: 0
+  startPos: {x: 0, y: 0, z: 0}
+  scoreCounter: 0
+  deathCounter: 0
+  killCounter: 0
   maxHealth: 2
   currentHealth: 0
+  respawnCD: 5
 --- !u!114 &7880471662396448510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -240,6 +246,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  gunlayer:
+    serializedVersion: 2
+    m_Bits: 64
+  playerlayer:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &7880471662396448497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -323,12 +335,24 @@ MonoBehaviour:
     m_ActionName: Player/Interact[/Keyboard/y,/XboxOneGampadMacOSWireless/buttonNorth]
   - m_PersistentCalls:
       m_Calls: []
-    m_ActionId: 8de4a366-4043-4e21-a025-c0ace42277ad
-    m_ActionName: UI/New action
-  - m_PersistentCalls:
-      m_Calls: []
     m_ActionId: b24e4ae7-8011-451c-8ae0-9b5de81f140d
     m_ActionName: Player/PlayerJoin[/Keyboard/enter,/XboxOneGampadMacOSWireless/start]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2cb219f4-2ca4-4287-a13c-a253fddfe5be
+    m_ActionName: Menus/Game Join[/Keyboard/enter]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: f730b7ec-c8d3-45d4-9cb2-7a277fc57831
+    m_ActionName: Menus/Select[/Keyboard/j]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 1d3a335e-52e9-4aba-8409-2f8e48fcf4e7
+    m_ActionName: Menus/Back[/Keyboard/k]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 040afce1-4c34-4499-a924-4ad01c6a6537
+    m_ActionName: Menus/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   m_NeverAutoSwitchControlSchemes: 1
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -353,4 +377,5 @@ MonoBehaviour:
   rb: {fileID: 0}
   coll: {fileID: 0}
   gunScript: {fileID: 0}
+  despawnScript: {fileID: 0}
   numInRange: 0

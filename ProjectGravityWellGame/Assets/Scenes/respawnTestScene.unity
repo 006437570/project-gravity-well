@@ -658,7 +658,7 @@ Transform:
   - {fileID: 2005852249}
   - {fileID: 608229843}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1502535374
 PrefabInstance:
@@ -968,6 +968,10 @@ PrefabInstance:
       value: WallsFloor2
       objectReference: {fileID: 0}
     - target: {fileID: 6713190236643867059, guid: 26cbbe5ac50581d4381f805c2b8057c7, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6713190236643867059, guid: 26cbbe5ac50581d4381f805c2b8057c7, type: 3}
       propertyPath: m_TagString
       value: Terrain
       objectReference: {fileID: 0}
@@ -1166,7 +1170,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2899126500117920250, guid: 37b495838d9f94f12abecb961716f866, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2899126500117920250, guid: 37b495838d9f94f12abecb961716f866, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1284,6 +1288,10 @@ PrefabInstance:
     - target: {fileID: 2962333475760352092, guid: 36d8caf4c7d826845bb37fd1116b79b4, type: 3}
       propertyPath: m_Name
       value: Background1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2962333475760352092, guid: 36d8caf4c7d826845bb37fd1116b79b4, type: 3}
+      propertyPath: m_Layer
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 36d8caf4c7d826845bb37fd1116b79b4, type: 3}
