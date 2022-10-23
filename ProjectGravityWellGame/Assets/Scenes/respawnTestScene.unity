@@ -1228,10 +1228,6 @@ PrefabInstance:
       propertyPath: spawnLocations.Array.data[3]
       value: 
       objectReference: {fileID: 1551271359}
-    - target: {fileID: 2899126500117920253, guid: 37b495838d9f94f12abecb961716f866, type: 3}
-      propertyPath: m_JoinBehavior
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2899126500117920255, guid: 37b495838d9f94f12abecb961716f866, type: 3}
       propertyPath: m_Name
       value: InputManager
