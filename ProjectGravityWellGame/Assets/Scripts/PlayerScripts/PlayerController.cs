@@ -40,6 +40,18 @@ public class PlayerController : MonoBehaviour
     // Sound Effects
     [SerializeField] private AudioSource GravitySwitch;
 
+    [SerializeField] private MeshRenderer playerMesh;
+
+    private PlayerController controls;
+
+    private PlayerConfiguration playerConfig;
+
+    public void InitializePlayer(PlayerConfiguration config)
+    {
+        playerConfig = config;
+        playerMesh.material = config.playerMaterial;
+    }
+
 
     private void OnEnable()
     {
