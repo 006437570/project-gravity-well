@@ -8,6 +8,7 @@ public class pickUpDropFire : MonoBehaviour
     // For input system
     private InputActionAsset playerControls;
     private InputActionMap player;
+    private InputAction pa;
 
     // Bools that determine weapon states
     [SerializeField]

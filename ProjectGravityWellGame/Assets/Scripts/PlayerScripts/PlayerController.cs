@@ -22,15 +22,24 @@ public class PlayerController : MonoBehaviour
 
     // Move direction variable
     Vector2 moveDir = Vector2.zero;
-        
+
     // For ground checker.
     public Transform groundCheck;
     public float groundCheckRadius;
     public LayerMask groundLayer;
+    public LayerMask gunlayer;
+    public LayerMask playerlayer;
     private bool isTouchingGround;
+    private bool isTouchingGun;
+    private bool isTouchingPlayer;
+    private bool isJumping;
 
     // x Direction player faces
     bool facingRight = true;
+
+    // Sound Effects
+    [SerializeField] private AudioSource GravitySwitch;
+
 
     private void OnEnable()
     {
@@ -54,12 +63,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector2(moveDir.x * moveSpeed,rb.velocity.y);
+        rb.velocity = new Vector2(moveDir.x * moveSpeed, rb.velocity.y);
     }
 
     void Update()
     {
-        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+        isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // checks if the player is touching the ground
+
+        isTouchingGun = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, gunlayer); // checks if the player is touching a gun
+
+        isTouchingPlayer = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, playerlayer); // checks if the player is touching another player
 
         if (isTouchingGround)
         {
@@ -87,15 +100,17 @@ public class PlayerController : MonoBehaviour
             rb.gravityScale = -rb.gravityScale;
             jumpSpeed = -jumpSpeed;
             flipY();
+            isJumping = true;
         }
     }
 
     // Player jumps
     private void Jump(InputAction.CallbackContext context)
     {
-        if (isTouchingGround)
+        if (isTouchingGround || isTouchingGun || isTouchingPlayer && !isJumping)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
+            isJumping = true;
         }
     }
 
@@ -109,6 +124,16 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
+        GravitySwitch.Play();
         transform.Rotate(180f, 0f, 0f);
+    }
+
+    // Checks if the player is colliding with objects on the map and if so then set isJumping to false
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.CompareTag("Terrain") || other.gameObject.CompareTag("Weapon") || other.gameObject.CompareTag("Player"))
+        {
+            isJumping = false;
+        }
     }
 }
