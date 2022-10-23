@@ -80,6 +80,15 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Select"",
+                    ""type"": ""Button"",
+                    ""id"": ""33d63d6b-6d14-4a95-a0e6-c163c710af91"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -185,7 +194,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""69128350-fc97-45bb-8a64-9ae59fc61155"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard1"",
@@ -207,7 +216,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2fd18e32-2f65-48aa-b8fa-b457100464cb"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard1"",
@@ -229,7 +238,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""25ba390f-cb91-40b9-8577-615bf611e50c"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard1"",
@@ -252,7 +261,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""a5639245-35e4-4890-b9dc-152d4cd3e5e2"",
                     ""path"": ""<Keyboard>/enter"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Keyboard1"",
                     ""action"": ""PlayerJoin"",
@@ -263,10 +272,32 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""99ec72cc-bc55-4aec-82a1-ea10719ae82a"",
                     ""path"": ""<Gamepad>/start"",
-                    ""interactions"": """",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Gamepad"",
                     ""action"": ""PlayerJoin"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""02e7fc77-3365-4ad5-9c4a-8f0349106ea9"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard1"",
+                    ""action"": ""Select"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9ef68ac4-2d05-4c8b-abba-121e903dae98"",
+                    ""path"": ""<Gamepad>/select"",
+                    ""interactions"": ""Press(behavior=2)"",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Select"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -482,6 +513,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
         m_Player_Interact = m_Player.FindAction("Interact", throwIfNotFound: true);
         m_Player_PlayerJoin = m_Player.FindAction("PlayerJoin", throwIfNotFound: true);
+        m_Player_Select = m_Player.FindAction("Select", throwIfNotFound: true);
         // Menus
         m_Menus = asset.FindActionMap("Menus", throwIfNotFound: true);
         m_Menus_GameJoin = m_Menus.FindAction("Game Join", throwIfNotFound: true);
@@ -553,6 +585,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Fire;
     private readonly InputAction m_Player_Interact;
     private readonly InputAction m_Player_PlayerJoin;
+    private readonly InputAction m_Player_Select;
     public struct PlayerActions
     {
         private @PlayerInputActions m_Wrapper;
@@ -563,6 +596,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         public InputAction @Fire => m_Wrapper.m_Player_Fire;
         public InputAction @Interact => m_Wrapper.m_Player_Interact;
         public InputAction @PlayerJoin => m_Wrapper.m_Player_PlayerJoin;
+        public InputAction @Select => m_Wrapper.m_Player_Select;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -590,6 +624,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlayerJoin.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJoin;
                 @PlayerJoin.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJoin;
                 @PlayerJoin.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPlayerJoin;
+                @Select.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
+                @Select.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSelect;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -612,6 +649,9 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
                 @PlayerJoin.started += instance.OnPlayerJoin;
                 @PlayerJoin.performed += instance.OnPlayerJoin;
                 @PlayerJoin.canceled += instance.OnPlayerJoin;
+                @Select.started += instance.OnSelect;
+                @Select.performed += instance.OnSelect;
+                @Select.canceled += instance.OnSelect;
             }
         }
     }
@@ -699,6 +739,7 @@ public partial class @PlayerInputActions : IInputActionCollection2, IDisposable
         void OnFire(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
         void OnPlayerJoin(InputAction.CallbackContext context);
+        void OnSelect(InputAction.CallbackContext context);
     }
     public interface IMenusActions
     {

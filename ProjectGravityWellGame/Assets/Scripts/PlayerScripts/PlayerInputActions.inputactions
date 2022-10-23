@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Select",
+                    "type": "Button",
+                    "id": "33d63d6b-6d14-4a95-a0e6-c163c710af91",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -163,7 +172,7 @@
                 {
                     "name": "",
                     "id": "69128350-fc97-45bb-8a64-9ae59fc61155",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard1",
@@ -185,7 +194,7 @@
                 {
                     "name": "",
                     "id": "2fd18e32-2f65-48aa-b8fa-b457100464cb",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard1",
@@ -207,7 +216,7 @@
                 {
                     "name": "",
                     "id": "25ba390f-cb91-40b9-8577-615bf611e50c",
-                    "path": "<Keyboard>/k",
+                    "path": "<Keyboard>/f",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard1",
@@ -230,7 +239,7 @@
                     "name": "",
                     "id": "a5639245-35e4-4890-b9dc-152d4cd3e5e2",
                     "path": "<Keyboard>/enter",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Keyboard1",
                     "action": "PlayerJoin",
@@ -241,10 +250,32 @@
                     "name": "",
                     "id": "99ec72cc-bc55-4aec-82a1-ea10719ae82a",
                     "path": "<Gamepad>/start",
-                    "interactions": "",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "PlayerJoin",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "02e7fc77-3365-4ad5-9c4a-8f0349106ea9",
+                    "path": "<Keyboard>/k",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "Keyboard1",
+                    "action": "Select",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9ef68ac4-2d05-4c8b-abba-121e903dae98",
+                    "path": "<Gamepad>/select",
+                    "interactions": "Press(behavior=2)",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Select",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
