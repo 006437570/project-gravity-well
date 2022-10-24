@@ -13,8 +13,8 @@ public class playerSpawnManager : MonoBehaviour
 
         playerInput.gameObject.GetComponent<PlayerHealth>().startPos = spawnLocations[playerInput.playerIndex].position; //spawns player at specific spawn
 
-        numPlayers++; //Increase the number of players in the game
         players[numPlayers] = playerInput.gameObject; //Stores player in to the array.
+        numPlayers++; //Increase the number of players in the game
 
         //Temporary color changer until character ready screen is done
         if (numPlayers == 2) playerInput.gameObject.GetComponent<SpriteRenderer>().color = new Color(1, 0, 0, 1);
