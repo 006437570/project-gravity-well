@@ -104,7 +104,7 @@ public class PlayerHealth : MonoBehaviour
     void playerRespawn()
     {
         playerDead = false; //player set to alive again
-        respawnManager.instance.respawnAt(respawnManager.instance.randomRespawn(respawnManager.instance.pSP1, respawnManager.instance.pSP2, respawnManager.instance.pSP3, respawnManager.instance.pSP4), gameObject); //respawns player at random place
+        respawnManager.instance.respawnAt(respawnManager.instance.randomRespawn(respawnManager.instance.pSP), gameObject);//respawns player at random place
         //add invul period
         coll.enabled = true;
         sr.enabled = true;
