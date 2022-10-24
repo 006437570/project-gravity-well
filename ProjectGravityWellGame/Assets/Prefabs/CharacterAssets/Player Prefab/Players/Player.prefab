@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5228591803996244923}
   - component: {fileID: 4580647217467563047}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GunHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -56,7 +56,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7880471662207310237}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundChecker
   m_TagString: Untagged
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 7880471662396448510}
   - component: {fileID: 7880471662396448497}
   - component: {fileID: 7938314155565084101}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -246,6 +246,12 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 8
+  gunlayer:
+    serializedVersion: 2
+    m_Bits: 128
+  playerlayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &7880471662396448497
 MonoBehaviour:
   m_ObjectHideFlags: 0
