@@ -71,7 +71,8 @@ public class pickUpDropFire : MonoBehaviour
             coll.enabled = true;
         }
         despawnScript.equipped = false;
-        despawnScript.countDown = despawnScript.timeToDespawn;
+        //despawnScript.countDown = despawnScript.timeToDespawn;
+        despawnScript.countDown = 0;
     }
 
     // If player is in range of a weapon sets inRange to true
@@ -141,7 +142,7 @@ public class pickUpDropFire : MonoBehaviour
         }
     }
 
-    private void Interact(InputAction.CallbackContext context)
+    public void Interact(InputAction.CallbackContext context)
     {
         // If player doesn't have a weapon equipped and is in range of weapon
         // then pick up weaon and place into gunHolder

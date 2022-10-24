@@ -75,17 +75,18 @@ public class PlayerHealth : MonoBehaviour
     // Will calculate by subtracting currentHealth by damage amount
     public void calcDmg (int dmg, GameObject playerAttacker)
     {
-        if (playerDead) return; //if player is already dead, then do nothing.
+        //if (playerDead) return; //if player is already dead, then do nothing.
 
         currentHealth -= dmg; //Takes damage from bullet
-        if (currentHealth <= 0) // If the players health hits zero or less, then player dies
+        if (currentHealth == 0) // If the players health hits zero or less, then player dies
         {
             if (pUDF.weaponSlotFull) {pUDF.dropDead();} //drops weapon if holding one
             if (playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
             {
                 playerAttacker.GetComponent<PlayerHealth>().killCounter++;
             }
-            playerDeath(); //kills player
+            //playerDeath(); //kills player
+            gameObject.SetActive(false);
         }
     }
 
@@ -104,11 +105,15 @@ public class PlayerHealth : MonoBehaviour
     void playerRespawn()
     {
         playerDead = false; //player set to alive again
-        respawnManager.instance.respawnAt(respawnManager.instance.randomRespawn(respawnManager.instance.pSP1, respawnManager.instance.pSP2, respawnManager.instance.pSP3, respawnManager.instance.pSP4), gameObject); //respawns player at random place
         //add invul period
         coll.enabled = true;
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
         currentHealth = maxHealth; //resets player health
+    }
+
+    public void FillHealth()
+    {
+        currentHealth = maxHealth;
     }
 }

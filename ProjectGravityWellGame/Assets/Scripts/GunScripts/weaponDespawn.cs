@@ -31,4 +31,9 @@ public class weaponDespawn : MonoBehaviour
             }
         }
     }
+
+    public void DropAfterRoundEnds()
+    {
+        Destroy(gameObject);
+    }
 }

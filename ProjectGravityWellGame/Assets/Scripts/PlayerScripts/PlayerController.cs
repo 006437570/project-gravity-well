@@ -37,8 +37,12 @@ public class PlayerController : MonoBehaviour
     // x Direction player faces
     bool facingRight = true;
 
-    // Sound Effects
-    [SerializeField] private AudioSource GravitySwitch;
+
+    void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        GameManager.instance.AddPlayer(this);
+    }
 
 
     private void OnEnable()
@@ -124,7 +128,7 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
-        GravitySwitch.Play();
+        AudioManager.instance.playSFX(2);
         transform.Rotate(180f, 0f, 0f);
     }
 

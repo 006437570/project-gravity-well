@@ -5,7 +5,6 @@ public class fireProjectileGun : MonoBehaviour
     // Rework this script
 
     [SerializeField] private AudioSource BlickySoundEffect;
-    [SerializeField] private AudioSource OutOfAmmoSoundEffect;
 
     public Transform firepoint; //point from gun that bullet is shot from
     public GameObject bulletPrefab; //bullet prefab that will be shot
@@ -31,7 +30,7 @@ public class fireProjectileGun : MonoBehaviour
         }
         else // if there is no more ammo in the gun then play a sound to indicate that there are no more bullets
         {
-            OutOfAmmoSoundEffect.Play();
+            AudioManager.instance.playSFX(4);
         }
     }
 }
