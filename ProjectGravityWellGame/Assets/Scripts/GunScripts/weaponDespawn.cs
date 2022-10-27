@@ -32,7 +32,6 @@ public class weaponDespawn : MonoBehaviour
         }
         if (gameObject.GetComponent<fireProjectileGun>().ammo <= 0 && !equipped)
         {
-            countDown
             Destroy(gameObject);
         }
     }

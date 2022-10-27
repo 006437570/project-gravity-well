@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4580647217467563047}
   m_Layer: 6
   m_Name: GunHolder
-  m_TagString: Untagged
+  m_TagString: GunHolder
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,7 +108,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7880471662396448498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.8591, y: -0.12, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.75, y: 0.63, z: 1}
   m_Children:
   - {fileID: 7880471662207310237}
