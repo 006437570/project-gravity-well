@@ -17,7 +17,7 @@ Game Title: Gravity Well
 ------------------------------------------------
 Instructions on how to download and run the game
 ------------------------------------------------
-1. Click on Gravity Well - Prototype 1 in the releases section on the right side of github.
+1. Click on Gravity Well - Prototype 1 in the releases section on the right side of Github.
 
 ![Untitled-1](https://user-images.githubusercontent.com/112797534/198538523-8be57a57-5d7f-4929-abc3-cd10e3cf6bc1.jpg)
 
