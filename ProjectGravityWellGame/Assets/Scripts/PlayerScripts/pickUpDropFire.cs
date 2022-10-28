@@ -37,6 +37,7 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private int numInRange = 0;
 
+    // when the player gets enabled give them access to interact and fire controls
     private void OnEnable()
     {
         player.FindAction("Interact").started += Interact;
@@ -44,11 +45,13 @@ public class pickUpDropFire : MonoBehaviour
         player.Enable();
     }
 
+    // when OnDisable is called disable the player
     private void OnDisable()
     {
         player.Disable();
     }
 
+    // On Awake 
     void Awake()
     {
         playerControls = this.GetComponent<PlayerInput>().actions;
@@ -93,12 +96,14 @@ public class pickUpDropFire : MonoBehaviour
         }
         
     }
+
+    // Checks to see if the player is not in range of a weapon
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
         {
             numInRange--;
-            if (numInRange <= 0)
+            if (numInRange <= 0) // if the player is not in range set their hands to null or nothing
             {
                 inRange = false;
                 if (!weaponSlotFull)
@@ -112,11 +117,13 @@ public class pickUpDropFire : MonoBehaviour
             }
         }
     }
+
+    // Checks to see if the player is in range of the weapon
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
         {
-            if (numInRange > 0 && !weaponSlotFull)
+            if (numInRange > 0 && !weaponSlotFull) // gets the components of the weapon when in range
             {
                 inHandItem = collider.gameObject;
                 rb = collider.GetComponent<Rigidbody2D>();

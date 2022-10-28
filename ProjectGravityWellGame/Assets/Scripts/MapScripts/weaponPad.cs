@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class weaponPad : MonoBehaviour
 {
+    // initializing many variables to store data on weapons and spawnpoints
     [SerializeField]
     private GameObject weapon;
 
@@ -14,6 +15,7 @@ public class weaponPad : MonoBehaviour
     [SerializeField]
     private bool spawnAtStart, onSpawnPoint;
 
+    // On awake start the spawning weapons
     private void Awake()
     {
         if (spawnAtStart)
@@ -28,6 +30,7 @@ public class weaponPad : MonoBehaviour
         }
     }
 
+    // When an object leaves the trigger collider do a check on the spawnpoint
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
@@ -37,6 +40,7 @@ public class weaponPad : MonoBehaviour
         }
     }
 
+    // Checks if an object enters the trigger collider attached to this object do a check on the spawnpoint
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
@@ -45,6 +49,8 @@ public class weaponPad : MonoBehaviour
         }
     }
 
+    // After every in game frame update check if there is a weapon on a spawnpoint if not then
+    // attempt to spawn a weapon based on the time
     private void Update()
     {
         if (!onSpawnPoint)
@@ -58,6 +64,7 @@ public class weaponPad : MonoBehaviour
         }
     }
 
+    // spawns a weapon when called
     void spawnWeapon()
     {
         Instantiate(weapon, weaponSP.position, Quaternion.identity);

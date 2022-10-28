@@ -7,6 +7,7 @@ public class respawnManager : MonoBehaviour
     [SerializeField]
     public Transform[] pSP;
 
+    // On awake set the respawn manager to the current instance
     private void Awake()
     {
         instance = this;

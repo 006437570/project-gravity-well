@@ -20,6 +20,8 @@ public class weaponDespawn : MonoBehaviour
         // if despawn timer hits zero destroy gameobject
     //if out of ammo (for future)
         //destroy gameobject
+  
+    // Checks to see if the weapon is not equiped and starts the despawn timer
     private void Update()
     {
         if (!equipped)

@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    // Interacts with the rigidbody
     public Rigidbody2D rb;
 
     // Movement variables
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
         //GameManager.instance.AddPlayer(this);
     }
 
-
+    // When an object in this case the player becomes enabled give the player movement
     private void OnEnable()
     {
         player.FindAction("GravSwitch").started += GravSwitch;
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
         player.Enable();
     }
 
+    // When an object is disabled in this case disable the player
     private void OnDisable()
     {
         player.Disable();
@@ -65,11 +67,13 @@ public class PlayerController : MonoBehaviour
         player = playerControls.FindActionMap("Player");
     }
 
+    // messes with the physics of the rigidbody
     private void FixedUpdate()
     {
         rb.velocity = new Vector2(moveDir.x * moveSpeed, rb.velocity.y);
     }
 
+    // Whenever the game updates every frame do some preliminary checks
     void Update()
     {
         isTouchingGround = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer); // checks if the player is touching the ground
@@ -78,7 +82,7 @@ public class PlayerController : MonoBehaviour
 
         isTouchingPlayer = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, playerlayer); // checks if the player is touching another player
 
-        if (isTouchingGround)
+        if (isTouchingGround) // check if the player is touching the ground
         {
             numFlips = 0;
         }
