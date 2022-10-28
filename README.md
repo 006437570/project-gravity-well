@@ -27,7 +27,7 @@ Instructions on how to download and run the game
 
 3. Save the zip file onto your laptop/desktop
 
-4. Find where the file is on the computer and extract using Windows built in extraction tool or use a third party program like winrar or 7zip to extract the file
+4. Find where the file is on the computer and extract using Windows built in extraction tool or use a third party program like Winrar or 7zip to extract the file
 
 ![Untitled-4](https://user-images.githubusercontent.com/112797534/198539980-6d801462-f6a6-4f12-b57e-0672130a9b55.jpg)
 
