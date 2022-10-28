@@ -12,6 +12,7 @@ TagManager:
   - PlayerSpawner
   - ItemSpawner
   - Weapon
+  - GunHolder
   layers:
   - Default
   - TransparentFX

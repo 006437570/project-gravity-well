@@ -23,7 +23,7 @@ public class PlayerHealth : MonoBehaviour
 
     //Respawn variables
     [SerializeField]
-    private float respawnCD = 5; //How long it takes player to respawn
+    private float respawnCD = 3; //How long it takes player to respawn
     private float respawnTimer; //How much longer until player respawns
     private bool playerDead;  //Tracks if player is currently daed
 
@@ -65,11 +65,6 @@ public class PlayerHealth : MonoBehaviour
                 playerRespawn(); //respawns player
             }
         }
-
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            calcDmg(maxHealth, gameObject);
-        }
     }
 
     // Will calculate by subtracting currentHealth by damage amount
@@ -80,19 +75,32 @@ public class PlayerHealth : MonoBehaviour
         currentHealth -= dmg; //Takes damage from bullet
         if (currentHealth <= 0) // If the players health hits zero or less, then player dies
         {
-            if (pUDF.weaponSlotFull) {pUDF.dropDead();} //drops weapon if holding one
-            if (playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
-            {
-                playerAttacker.GetComponent<PlayerHealth>().killCounter++;
-            }
-            playerDeath(); //kills player
+            playerDeath(playerAttacker); //kills player
         }
     }
 
-    void playerDeath()
+    public void playerDeath()
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
+        if (pUDF.weaponSlotFull) {pUDF.dropDead();}
+        playerDead = true; //sets player to dead
+        respawnTimer = respawnCD; //sets respawn timer
+        coll.enabled = false;
+        sr.enabled = false;
+        pc.enabled = false; //turns off player ability to move while dead
+        deathCounter++;
+    }
+
+    public void playerDeath(GameObject playerAttacker)
+    {
+        // Plays player death animation when ready
+        // Instantiate(deathAni, transform.position, Quaternion.identity);
+        if (pUDF.weaponSlotFull) {pUDF.dropDead();} //drops weapon if holding one
+        if (playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
+        {
+            playerAttacker.GetComponent<PlayerHealth>().killCounter++;
+            }
         playerDead = true; //sets player to dead
         respawnTimer = respawnCD; //sets respawn timer
         coll.enabled = false;
