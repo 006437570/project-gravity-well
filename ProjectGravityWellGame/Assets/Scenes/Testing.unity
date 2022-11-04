@@ -273,6 +273,7 @@ MonoBehaviour:
   movingspeed: 1
   speed: 15
   jumpSpeed: 7
+  jumpTimer: 3
   groundCheck: {fileID: 1762233730}
   groundCheckRadius: 0.6
   groundLayer:
@@ -730,6 +731,7 @@ MonoBehaviour:
   movingspeed: 0
   speed: 15
   jumpSpeed: 7
+  jumpTimer: 3
   groundCheck: {fileID: 1774526425}
   groundCheckRadius: 0.6
   groundLayer:

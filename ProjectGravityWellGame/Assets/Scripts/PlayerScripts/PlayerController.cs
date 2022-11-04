@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     float inputHorizontal;
 
     public float jumpSpeed;
+   public float jumpTimer = 3f;
 
     public Transform groundCheck;
     public float groundCheckRadius;
@@ -65,6 +66,12 @@ public class PlayerController : MonoBehaviour
 
         
         
+        if (jumpTimer > 0)
+        {
+            jumpTimer -= Time.deltaTime;
+        }
+
+        
             /*
         if (name == "PlayerOne")
         {
@@ -102,9 +109,10 @@ public class PlayerController : MonoBehaviour
         if (name == "PlayerOne")
         {
 
-            if (Input.GetButtonDown("Jump") && isTouchingGround)
+            if (Input.GetButtonDown("Jump") && isTouchingGround && jumpTimer < 0f)
             {
                 playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+                jumpTimer = 3f;
             }
 
         }
@@ -112,9 +120,10 @@ public class PlayerController : MonoBehaviour
         if (name == "PlayerTwo")
         {
 
-            if (Input.GetButtonDown("JumpTwo") && isTouchingGround)
+            if (Input.GetButtonDown("JumpTwo") && isTouchingGround && jumpTimer < 0f)
             {
                 playerRigid.velocity = new Vector2(playerRigid.velocity.x, jumpSpeed);
+                jumpTimer = 3f;
             }
 
         }
