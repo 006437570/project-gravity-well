@@ -5,10 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    
+    [SerializeField] GameObject mainPanel;
+    [SerializeField] GameObject optionsMenu;
+
+    List<int> widths = new List<int>() {1920, 2560, 2560, 1280, 540};
+    List<int> heights = new List<int>() {1080, 1440, 1080, 800, 960};
+  
+    public void Start()
+    {
+        Screen.SetResolution(1920, 1080, FullScreenMode.Windowed);
+    }
+
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void GoToOptions()
+    {
+        mainPanel.SetActive(false);
+        optionsMenu.SetActive(true);
     }
 
     public void QuitGame()
@@ -16,9 +32,6 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quit!");
         Application.Quit();
     }
-
-    List<int> widths = new List<int>() {320, 540, 1280, 1920};
-    List<int> heights = new List<int>() {568, 960, 800, 1080};
 
     public void SetScreenSize(int index)
     {
