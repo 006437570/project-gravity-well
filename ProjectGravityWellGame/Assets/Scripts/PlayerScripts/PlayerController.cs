@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
     // When an object is disabled in this case disable the player
     private void OnDisable()
     {
+        
         player.Disable();
     }
 
@@ -65,6 +66,7 @@ public class PlayerController : MonoBehaviour
     {
         playerControls = this.GetComponent<PlayerInput>().actions;
         player = playerControls.FindActionMap("Player");
+
     }
 
     // messes with the physics of the rigidbody

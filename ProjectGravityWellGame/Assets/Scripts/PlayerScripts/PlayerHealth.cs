@@ -84,6 +84,7 @@ public class PlayerHealth : MonoBehaviour
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
         if (pUDF.weaponSlotFull) {pUDF.dropDead();}
+        
         playerDead = true; //sets player to dead
         respawnTimer = respawnCD; //sets respawn timer
         coll.enabled = false;
@@ -101,6 +102,7 @@ public class PlayerHealth : MonoBehaviour
         {
             playerAttacker.GetComponent<PlayerHealth>().killCounter++;
             }
+       
         playerDead = true; //sets player to dead
         respawnTimer = respawnCD; //sets respawn timer
         coll.enabled = false;
@@ -112,11 +114,23 @@ public class PlayerHealth : MonoBehaviour
     void playerRespawn()
     {
         playerDead = false; //player set to alive again
+        
         respawnManager.instance.respawnAt(respawnManager.instance.randomRespawn(respawnManager.instance.pSP), gameObject);//respawns player at random place
         //add invul period
         coll.enabled = true;
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
         currentHealth = maxHealth; //resets player health
+        
+        if (pc.jumpSpeed == -12)
+        {
+            pc.rb.gravityScale = -pc.rb.gravityScale;
+            pc.jumpSpeed = 12;
+            pc.transform.Rotate(180f, 0f, 0f);
+            
+
+        }
+        
+           
     }
 }
