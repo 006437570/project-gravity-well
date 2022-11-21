@@ -163,8 +163,11 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = true;
             }
             coll.enabled = false;
-            // When holding item 
-            despawnScript.equipped = true;
+            // When holding item
+            if (!gunScript.isFlag)
+            { 
+                despawnScript.equipped = true;
+            }
             return;
         }
         // If player has a weapon equipped, then drop weapon
@@ -179,8 +182,11 @@ public class pickUpDropFire : MonoBehaviour
             }
             coll.enabled = true;
             // When dropped begin despawn timer for weapon
-            despawnScript.equipped = false;
-            despawnScript.countDown = despawnScript.timeToDespawn;
+            if (!gunScript.isFlag)
+            {
+                despawnScript.equipped = false;
+                despawnScript.countDown = despawnScript.timeToDespawn;
+            }
             return;
         }
     }
