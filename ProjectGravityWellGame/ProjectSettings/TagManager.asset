@@ -13,6 +13,7 @@ TagManager:
   - ItemSpawner
   - Weapon
   - GunHolder
+  - FlagPoint
   layers:
   - Default
   - TransparentFX

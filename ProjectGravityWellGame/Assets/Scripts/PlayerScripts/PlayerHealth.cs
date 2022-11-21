@@ -20,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
     // Player HP info
     public int maxHealth = 2;
     public int currentHealth;
+    public bool isEliminated;
 
     //Respawn variables
     [SerializeField]
@@ -52,10 +53,17 @@ public class PlayerHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();
         //respawnTimer = respawnCD;
+
+        isEliminated = false;
     }
 
     private void Update()
     {
+        if (isEliminated)
+        {
+            gameObject.SetActive(false);
+        }
+
         // If player is dead, then start respawn timer
         if (playerDead)
         {

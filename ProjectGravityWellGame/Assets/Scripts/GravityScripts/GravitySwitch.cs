@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-using System; //Allows use of absolute value math function
 
 public class GravitySwitch : MonoBehaviour
 {

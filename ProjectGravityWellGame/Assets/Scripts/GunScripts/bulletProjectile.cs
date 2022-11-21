@@ -31,7 +31,7 @@ public class bulletProjectile : MonoBehaviour
             playerHit.calcDmg(dmg, playerAttacker);
             Destroy(gameObject);
         }
-        if (hitDetection.gameObject.CompareTag("Terrain") || (hitDetection.gameObject.CompareTag("Projectile")) )
+        if (hitDetection.gameObject.CompareTag("Terrain") || hitDetection.gameObject.CompareTag("Projectile"))
         {
             Destroy(gameObject);
         }

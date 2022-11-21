@@ -190,7 +190,22 @@ public class pickUpDropFire : MonoBehaviour
     {
         if (weaponSlotFull)
         {
-            gunScript.Shoot(gameObject);
+            if (gunScript.isFlag)
+            {
+                weaponSlotFull = false;
+                inHandItem.transform.SetParent(null);
+                inHandItem = null;
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                }
+                coll.enabled = true;
+                // When dropped begin despawn timer for weapon
+                despawnScript.equipped = false;
+                despawnScript.countDown = despawnScript.timeToDespawn;
+                return;
+            }
+            StartCoroutine(gunScript.Shoot(gameObject));
         }
     }
 }
