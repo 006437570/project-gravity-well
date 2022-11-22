@@ -4,16 +4,19 @@ using UnityEngine;
 
 public class flagRespawn : MonoBehaviour
 {
+    public Transform sp;
     [SerializeField]
-    private Transform spawnPoint;
-    [SerializeField]
-    private float respawnCD, respawnTime = 10;
+    private float respawnCD, respawnTime = 10, flagTime = 5, flagCD;
 
-    private bool countDown;
+    private bool countDown, scored;
+
+    public GameObject playerHeld;
+
+    [SerializeField]
+    private GameObject psm;
 
     void Start()
     {
-        spawnPoint = gameObject.transform;
         respawnCD = respawnTime;
         countDown = false;
     }
@@ -22,17 +25,39 @@ public class flagRespawn : MonoBehaviour
     {
         if (countDown)
         {   
-            respawnCD -= Time.deltaTime;
-            if (respawnCD <= 0)
+            if (!gameObject.GetComponent<weaponDespawn>().equipped)
             {
-                gameObject.transform.position = spawnPoint.position;
-                gameObject.transform.rotation = spawnPoint.rotation;
+                respawnCD -= Time.deltaTime;
+                if (respawnCD <= 0)
+                {
+                    gameObject.transform.position = sp.position;
+                    gameObject.transform.rotation = sp.rotation;
+                }
+            }
+            else
+            {
+                respawnCD = respawnTime;
             }
         }
         else
         {
             respawnCD = respawnTime;
         }
+
+        if (scored)
+        {
+            flagCD -= Time.deltaTime;
+            if (flagCD <= 0)
+            {
+                scored = false;
+                gameObject.transform.position = sp.position;
+                gameObject.transform.rotation = sp.rotation;
+            }
+        }
+        else
+        {
+        }
+
     }
 
 
@@ -49,6 +74,17 @@ public class flagRespawn : MonoBehaviour
         if (collider.gameObject.CompareTag("FlagSpawn"))
         {
             countDown = false;
+        }
+
+        if (collider.gameObject.CompareTag("FlagPoint") && !gameObject.GetComponent<weaponDespawn>().equipped)
+        {
+            Debug.Log(playerHeld.GetComponent<PlayerHealth>().playerID);
+            playerHeld.GetComponent<PlayerHealth>().scoreCounter++;
+            Debug.Log("Score is: " + playerHeld.GetComponent<PlayerHealth>().scoreCounter);
+            Vector3 temp = new Vector3(1000f,0,0);
+            gameObject.transform.position += temp;
+            scored = true;
+            flagCD = flagTime;
         }
     }
 }

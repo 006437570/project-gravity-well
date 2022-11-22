@@ -17,8 +17,10 @@ public class spawnFlag : MonoBehaviour
     {
         if(gameController.gameMode == 2)
         {
-            //GameObject flag = flagPrefab;
-            Instantiate(flag, flagSpawn.position, flagSpawn.rotation);
+            flag.SetActive(true);
+            //GameObject flag = Instantiate(flagPrefab, flagSpawn.position, flagSpawn.rotation);
+            flag.GetComponent<flagRespawn>().sp = flagSpawn;
+            //flag.GetComponent<flagRespawn>().psm
         }
     }
 }
