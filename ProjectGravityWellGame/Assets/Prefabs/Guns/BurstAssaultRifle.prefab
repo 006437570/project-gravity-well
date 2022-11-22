@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7164165843166681416}
   - component: {fileID: 751166567241636417}
   m_Layer: 6
-  m_Name: Assault Rifle 2
+  m_Name: BurstAssaultRifle
   m_TagString: Weapon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
