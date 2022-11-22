@@ -821,6 +821,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1031222648}
   m_CullTransparentMesh: 1
+--- !u!1 &1056047667 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2673159961376434252, guid: fb5aa7c5be70d4a48ac2eec45d5c9ba8, type: 3}
+  m_PrefabInstance: {fileID: 2673159961222622195}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1056047668
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1056047667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83c725de3d873324c852d906c18564f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numPlayers: 0
+  players:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!1001 &1147633961
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1997,6 +2021,14 @@ PrefabInstance:
       value: GameManager
       objectReference: {fileID: 0}
     - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: gameMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: maxScore
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
       propertyPath: winLevel
       value: Win
       objectReference: {fileID: 0}
@@ -2005,8 +2037,28 @@ PrefabInstance:
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: GameMode.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
       propertyPath: all_levels.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: ctf_levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: GameMode.Array.data[0]
+      value: CTF
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: GameMode.Array.data[1]
+      value: Elimination
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: GameMode.Array.data[2]
+      value: DeathMatch
       objectReference: {fileID: 0}
     - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
       propertyPath: all_levels.Array.data[0]
@@ -2015,6 +2067,82 @@ PrefabInstance:
     - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
       propertyPath: all_levels.Array.data[1]
       value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: ctf_levels.Array.data[0]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: ctf_levels.Array.data[1]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: deathmatch_levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: Death_match_levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: death_match_levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: elimination_levels.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: deathmatch_levels.Array.data[0]
+      value: Testing
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: Death_match_levels.Array.data[0]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: Death_match_levels.Array.data[1]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: death_match_levels.Array.data[0]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: death_match_levels.Array.data[1]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: elimination_levels.Array.data[0]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: elimination_levels.Array.data[1]
+      value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: capture_the_flag_levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: king_of_the_hill_levels.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: capture_the_flag_levels.Array.data[0]
+      value: Map1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: capture_the_flag_levels.Array.data[1]
+      value: Map1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: king_of_the_hill_levels.Array.data[0]
+      value: Scene1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1539278905294081884, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
+      propertyPath: king_of_the_hill_levels.Array.data[1]
+      value: Scene1
       objectReference: {fileID: 0}
     - target: {fileID: 1539278905294081885, guid: 0f4ba57c7b3ede146ad01286bef30e5b, type: 3}
       propertyPath: m_RootOrder

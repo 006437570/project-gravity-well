@@ -9,9 +9,19 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     public int MaxPlayers;
+
+    [SerializeField] public int maxScore; // meant to keep score
+
+    public int gameMode; //which game mode is going to be played
+
     public List<PlayerController> activePlayers = new List<PlayerController>();
 
-    public string[] all_levels;
+    public string[] elimination_levels; // setup for elimination levels
+
+    public string[] ctf_levels; // setup for capture the flag levels
+
+    public string[] deathmatch_levels; // setup for deathmatch levels
+
     private List<string> levelOrder = new List<string>();
 
     [HideInInspector] public int lastPlayerNumber;
@@ -23,7 +33,11 @@ public class GameManager : MonoBehaviour
 
     public string winLevel;
 
-    private void Awake()
+    private int numEliminated;
+
+    private int score = 0;
+
+    private void Awake() // on awake prevent the game manager from getting destroyed
     {
         if(instance == null)
         {
@@ -71,6 +85,20 @@ public class GameManager : MonoBehaviour
         return playerAliveCount;
     }
 
+    public int CheckScore_Deathmatch()
+    {
+        for(int i = 0; i < activePlayers.Count; i++)
+        {
+            if(activePlayers[i].gameObject.GetComponent<PlayerHealth>().killCounter >= maxScore)
+            {
+                lastPlayerNumber = i;
+                gameWon = true;
+            }
+            score = activePlayers[i].gameObject.GetComponent<PlayerHealth>().killCounter;
+        }
+        return score;
+    }
+
     public void GoToNextArena()
     {
         if(!gameWon)
@@ -78,12 +106,35 @@ public class GameManager : MonoBehaviour
             if(levelOrder.Count == 0)
             {
                 List<string> allLevelList = new List<string>();
-                allLevelList.AddRange(all_levels);
-                for(int i = 0; i < all_levels.Length; i++)
+                if(gameMode == 0)
                 {
-                    int selected = Random.Range(0, allLevelList.Count);
-                    levelOrder.Add(allLevelList[selected]);
-                    allLevelList.RemoveAt(selected);
+                    allLevelList.AddRange(elimination_levels);
+                    for(int i = 0; i < elimination_levels.Length; i++)
+                    {
+                        int selected = Random.Range(0, allLevelList.Count);
+                        levelOrder.Add(allLevelList[selected]);
+                        allLevelList.RemoveAt(selected);
+                    }
+                }
+                if(gameMode == 1)
+                {
+                    allLevelList.AddRange(deathmatch_levels);
+                    for(int i = 0; i < deathmatch_levels.Length; i++)
+                    {
+                        int selected = Random.Range(0, allLevelList.Count);
+                        levelOrder.Add(allLevelList[selected]);
+                        allLevelList.RemoveAt(selected);
+                    }
+                }
+                if(gameMode == 2)
+                {
+                    allLevelList.AddRange(ctf_levels);
+                    for(int i = 0; i < ctf_levels.Length; i++)
+                    {
+                        int selected = Random.Range(0, allLevelList.Count);
+                        levelOrder.Add(allLevelList[selected]);
+                        allLevelList.RemoveAt(selected);
+                    }
                 }
             }
             string levelToLoad = levelOrder[0];
@@ -121,12 +172,30 @@ public class GameManager : MonoBehaviour
 
     public void AddRoundWin()
     {
-        if(CheckActivePlayers() == 1)
+        if(gameMode == 0) // gamemode is elimination
         {
-            roundWins[lastPlayerNumber]++;
-            if(roundWins[lastPlayerNumber] >= pointsToWin)
+            if(CheckActivePlayers() == 1)
             {
-                gameWon = true;
+                roundWins[lastPlayerNumber]++;
+                if(roundWins[lastPlayerNumber] >= pointsToWin)
+                {
+                    gameWon = true;
+                }
+            }
+        }
+        if(gameMode == 1) // gamemode is deathmatch
+        {
+            CheckScore_Deathmatch();
+        }
+        if(gameMode == 2) // gamemode is ctf
+        {
+            if(CheckActivePlayers() == 1)
+            {
+                roundWins[lastPlayerNumber]++;
+                if(roundWins[lastPlayerNumber] >= pointsToWin)
+                {
+                    gameWon = true;
+                }
             }
         }
     }

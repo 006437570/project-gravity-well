@@ -35,10 +35,28 @@ public class ArenaManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.CheckActivePlayers() == 1 && !roundOver)
+        if(GameManager.instance.gameMode == 0)
         {
-            roundOver = true;
-            StartCoroutine(EndRoundCo());
+            if(GameManager.instance.CheckActivePlayers() == 1 && !roundOver)
+            {
+                roundOver = true;
+                StartCoroutine(EndRoundCo());
+            }
+        }
+        if(GameManager.instance.gameMode == 1)
+        {
+            if(GameManager.instance.CheckScore_Deathmatch() == GameManager.instance.maxScore)
+            {
+                StartCoroutine(EndRoundCo());
+            }
+        }
+        if(GameManager.instance.gameMode == 2)
+        {
+            if(GameManager.instance.CheckActivePlayers() == 1 && !roundOver)
+            {
+                roundOver = true;
+                StartCoroutine(EndRoundCo());
+            }
         }
 
         if(gunCounter > 0)

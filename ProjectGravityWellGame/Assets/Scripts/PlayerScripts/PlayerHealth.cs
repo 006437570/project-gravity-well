@@ -21,6 +21,8 @@ public class PlayerHealth : MonoBehaviour
     public int maxHealth = 2;
     public int currentHealth;
 
+    public bool isEliminated;
+
     //Respawn variables
     [SerializeField]
     private float respawnCD = 5; //How long it takes player to respawn
@@ -52,48 +54,62 @@ public class PlayerHealth : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         coll = GetComponent<CapsuleCollider2D>();
         //respawnTimer = respawnCD;
+
+        isEliminated = false;
     }
 
     private void Update()
     {
-        // If player is dead, then start respawn timer
-        if (playerDead)
+        if (isEliminated)
         {
-            respawnTimer -= Time.deltaTime;
-            if (respawnTimer <= 0) //when respawn timer hits zero respawn the player
-            {
-                playerRespawn(); //respawns player
-            }
+            gameObject.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.M))
+        // If player is dead, then start respawn timer
+        if(GameManager.instance.gameMode == 1)
         {
-            calcDmg(maxHealth, gameObject);
+            if (playerDead)
+            {
+                respawnTimer -= Time.deltaTime;
+                if (respawnTimer <= 0) //when respawn timer hits zero respawn the player
+                {
+                    playerRespawn(); //respawns player
+                }
+            }
         }
     }
 
     // Will calculate by subtracting currentHealth by damage amount
     public void calcDmg (int dmg, GameObject playerAttacker)
     {
-        //if (playerDead) return; //if player is already dead, then do nothing.
+        if (playerDead) return; //if player is already dead, then do nothing.
 
         currentHealth -= dmg; //Takes damage from bullet
-        if (currentHealth == 0) // If the players health hits zero or less, then player dies
+        if (currentHealth <= 0) // If the players health hits zero or less, then player dies
         {
-            if (pUDF.weaponSlotFull) {pUDF.dropDead();} //drops weapon if holding one
-            if (playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
+            if(GameManager.instance.gameMode == 0)
             {
-                playerAttacker.GetComponent<PlayerHealth>().killCounter++;
+                gameObject.SetActive(false);
             }
-            //playerDeath(); //kills player
-            gameObject.SetActive(false);
+            if(GameManager.instance.gameMode == 1)
+            {
+                playerDeath(playerAttacker); //kills player
+            }        
         }
     }
 
-    void playerDeath()
+    void playerDeath(GameObject playerAttacker)
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
+        if(pUDF.weaponSlotFull)
+        {
+            pUDF.dropDead();
+        }
+        if(playerAttacker.GetComponent<PlayerHealth>().playerID > 0)
+        {
+            playerAttacker.GetComponent<PlayerHealth>().killCounter++;
+        }
         playerDead = true; //sets player to dead
         respawnTimer = respawnCD; //sets respawn timer
         coll.enabled = false;
@@ -105,6 +121,7 @@ public class PlayerHealth : MonoBehaviour
     void playerRespawn()
     {
         playerDead = false; //player set to alive again
+        respawnManager.instance.respawnAt(respawnManager.instance.randomRespawn(respawnManager.instance.pSP), gameObject);//respawns player at random place
         //add invul period
         coll.enabled = true;
         sr.enabled = true;
