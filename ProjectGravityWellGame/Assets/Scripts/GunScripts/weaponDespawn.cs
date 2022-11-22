@@ -24,17 +24,20 @@ public class weaponDespawn : MonoBehaviour
     // Checks to see if the weapon is not equiped and starts the despawn timer
     private void Update()
     {
-        if (!equipped)
+        if (!gameObject.GetComponent<fireProjectileGun>().isFlag)
         {
-            countDown -= Time.deltaTime;
-            if (countDown <= 0)
+            if (!equipped)
+            {
+                countDown -= Time.deltaTime;
+                if (countDown <= 0)
+                {
+                    Destroy(gameObject);
+                }
+            }
+            if (gameObject.GetComponent<fireProjectileGun>().ammo <= 0 && !equipped)
             {
                 Destroy(gameObject);
             }
-        }
-        if (gameObject.GetComponent<fireProjectileGun>().ammo <= 0 && !equipped)
-        {
-            Destroy(gameObject);
         }
     }
 }

@@ -15,6 +15,13 @@ public class killBox : MonoBehaviour
         else if (collider.gameObject.CompareTag("GunHolder"))
         {
         }
+        else if (collider.gameObject.CompareTag("Weapon"))
+        {
+            if(collider.gameObject.GetComponent<fireProjectileGun>().isFlag)
+            {
+                return;
+            }
+        }
         else
         {
             Destroy(collider.gameObject);

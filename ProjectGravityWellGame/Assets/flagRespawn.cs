@@ -4,15 +4,51 @@ using UnityEngine;
 
 public class flagRespawn : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField]
+    private Transform spawnPoint;
+    [SerializeField]
+    private float respawnCD, respawnTime = 10;
+
+    private bool countDown;
+
     void Start()
     {
-        
+        spawnPoint = gameObject.transform;
+        respawnCD = respawnTime;
+        countDown = false;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+        if (countDown)
+        {   
+            respawnCD -= Time.deltaTime;
+            if (respawnCD <= 0)
+            {
+                gameObject.transform.position = spawnPoint.position;
+                gameObject.transform.rotation = spawnPoint.rotation;
+            }
+        }
+        else
+        {
+            respawnCD = respawnTime;
+        }
+    }
+
+
+    private void OnTriggerExit2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("FlagSpawn"))
+        {
+            countDown = true;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.CompareTag("FlagSpawn"))
+        {
+            countDown = false;
+        }
     }
 }

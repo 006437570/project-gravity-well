@@ -49,18 +49,3 @@ public class fireProjectileGun : MonoBehaviour
         }
     }
 }
-
-/*
- public IEnumerator FireBurst(GameObject bulletPrefab, int burstSize, float rateOfFire)
- {
-     float bulletDelay = 60 / rateOfFire; 
-     // rate of fire in weapons is in rounds per minute (RPM), therefore we should calculate how much time passes before firing a new round in the same burst.
-     for (int i = 0; i < burstSize; i++)
-     {
-         GameObject bullet = Instatiate(bulletPrefab); // It would be wise to use the gun barrel's position and rotation to align the bullet to.
-         bullet.GetComponent<Rigidbody>.AddForce(bullet.transform.forward * 4000); // add some force to your bullet's rigidbody to make it go forward
-         
-         yield return new WaitForSeconds(bulletDelay); // wait till the next round
-     }
- }
-*/

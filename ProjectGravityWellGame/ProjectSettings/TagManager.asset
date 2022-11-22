@@ -12,8 +12,10 @@ TagManager:
   - PlayerSpawner
   - ItemSpawner
   - Weapon
+  - GroundCheck
   - GunHolder
   - FlagPoint
+  - FlagSpawn
   layers:
   - Default
   - TransparentFX
@@ -21,7 +23,7 @@ TagManager:
   - Floor
   - Water
   - UI
-  - Weapon
+  - Gun
   - Player
   - 
   - 
