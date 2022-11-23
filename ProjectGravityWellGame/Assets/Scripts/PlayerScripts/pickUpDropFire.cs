@@ -8,7 +8,6 @@ public class pickUpDropFire : MonoBehaviour
     // For input system
     private InputActionAsset playerControls;
     private InputActionMap player;
-    private InputAction pa;
 
     // Bools that determine weapon states
     [SerializeField]
@@ -37,6 +36,7 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private int numInRange = 0;
 
+    // when the player gets enabled give them access to interact and fire controls
     private void OnEnable()
     {
         player.FindAction("Interact").started += Interact;
@@ -44,11 +44,13 @@ public class pickUpDropFire : MonoBehaviour
         player.Enable();
     }
 
+    // when OnDisable is called disable the player
     private void OnDisable()
     {
         player.Disable();
     }
 
+    // On Awake 
     void Awake()
     {
         playerControls = this.GetComponent<PlayerInput>().actions;
@@ -71,8 +73,7 @@ public class pickUpDropFire : MonoBehaviour
             coll.enabled = true;
         }
         despawnScript.equipped = false;
-        //despawnScript.countDown = despawnScript.timeToDespawn;
-        despawnScript.countDown = 0;
+        despawnScript.countDown = despawnScript.timeToDespawn;
     }
 
     // If player is in range of a weapon sets inRange to true
@@ -94,12 +95,14 @@ public class pickUpDropFire : MonoBehaviour
         }
         
     }
+
+    // Checks to see if the player is not in range of a weapon
     private void OnTriggerExit2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
         {
             numInRange--;
-            if (numInRange <= 0)
+            if (numInRange <= 0) // if the player is not in range set their hands to null or nothing
             {
                 inRange = false;
                 if (!weaponSlotFull)
@@ -113,11 +116,13 @@ public class pickUpDropFire : MonoBehaviour
             }
         }
     }
+
+    // Checks to see if the player is in range of the weapon
     private void OnTriggerStay2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Weapon"))
         {
-            if (numInRange > 0 && !weaponSlotFull)
+            if (numInRange > 0 && !weaponSlotFull) // gets the components of the weapon when in range
             {
                 inHandItem = collider.gameObject;
                 rb = collider.GetComponent<Rigidbody2D>();
@@ -142,7 +147,7 @@ public class pickUpDropFire : MonoBehaviour
         }
     }
 
-    public void Interact(InputAction.CallbackContext context)
+    private void Interact(InputAction.CallbackContext context)
     {
         // If player doesn't have a weapon equipped and is in range of weapon
         // then pick up weaon and place into gunHolder
@@ -157,8 +162,11 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = true;
             }
             coll.enabled = false;
-            // When holding item 
             despawnScript.equipped = true;
+            if (gunScript.isFlag)
+            {
+                inHandItem.GetComponent<flagRespawn>().playerHeld = gameObject;
+            }
             return;
         }
         // If player has a weapon equipped, then drop weapon
@@ -172,9 +180,11 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = false;
             }
             coll.enabled = true;
-            // When dropped begin despawn timer for weapon
             despawnScript.equipped = false;
-            despawnScript.countDown = despawnScript.timeToDespawn;
+            if (!gunScript.isFlag)
+            {
+                despawnScript.countDown = despawnScript.timeToDespawn;
+            }
             return;
         }
     }
@@ -184,7 +194,22 @@ public class pickUpDropFire : MonoBehaviour
     {
         if (weaponSlotFull)
         {
-            gunScript.Shoot(gameObject);
+            if (gunScript.isFlag)
+            {
+                weaponSlotFull = false;
+                inHandItem.transform.SetParent(null);
+                inHandItem = null;
+                if (rb != null)
+                {
+                    rb.isKinematic = false;
+                }
+                coll.enabled = true;
+                // When dropped begin despawn timer for weapon
+                despawnScript.equipped = false;
+                despawnScript.countDown = despawnScript.timeToDespawn;
+                return;
+            }
+            StartCoroutine(gunScript.Shoot(gameObject));
         }
     }
 }

@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] public int maxScore; // meant to keep score
 
-    public int gameMode; //which game mode is going to be played
+    public int gameMode = 0; //which game mode is going to be played
 
     public List<PlayerController> activePlayers = new List<PlayerController>();
 
@@ -29,13 +29,21 @@ public class GameManager : MonoBehaviour
     public int pointsToWin;
     private List<int> roundWins = new List<int>();
 
+    public GiveID GiveID; // For setting up player ID's
+
     private bool gameWon;
 
     public string winLevel;
 
     private int numEliminated;
 
-    private int score = 0;
+    private int index = 1;
+
+    public GameObject[] players;
+
+    public int numPlayers;
+
+    [HideInInspector] public bool EndGame;
 
     private void Awake() // on awake prevent the game manager from getting destroyed
     {
@@ -54,7 +62,11 @@ public class GameManager : MonoBehaviour
     {
         if(activePlayers.Count < MaxPlayers)
         {
+            newPlayer.gameObject.GetComponent<PlayerHealth>().playerID = index + 1;
             activePlayers.Add(newPlayer);
+            index++;
+            players[numPlayers] = newPlayer.gameObject;
+            numPlayers++;
         }
         else
         {
@@ -84,19 +96,32 @@ public class GameManager : MonoBehaviour
         }
         return playerAliveCount;
     }
-
-    public int CheckScore_Deathmatch()
+    public void CheckScore_Deathmatch()
     {
-        for(int i = 0; i < activePlayers.Count; i++)
+        EndGame = false;
+        for(int i = 0; i < numPlayers; i++)
         {
-            if(activePlayers[i].gameObject.GetComponent<PlayerHealth>().killCounter >= maxScore)
+            if(players[i].GetComponent<PlayerHealth>().killCounter >= maxScore)
             {
+                EndGame = true;
                 lastPlayerNumber = i;
                 gameWon = true;
             }
-            score = activePlayers[i].gameObject.GetComponent<PlayerHealth>().killCounter;
         }
-        return score;
+    }
+
+    public void CheckScore_CTF()
+    {
+        EndGame = false;
+        for(int i = 0; i < numPlayers; i++)
+        {
+            if(players[i].GetComponent<PlayerHealth>().scoreCounter >= maxScore)
+            {
+                EndGame = true;
+                lastPlayerNumber = i;
+                gameWon = true;
+            }
+        }
     }
 
     public void GoToNextArena()
@@ -189,14 +214,7 @@ public class GameManager : MonoBehaviour
         }
         if(gameMode == 2) // gamemode is ctf
         {
-            if(CheckActivePlayers() == 1)
-            {
-                roundWins[lastPlayerNumber]++;
-                if(roundWins[lastPlayerNumber] >= pointsToWin)
-                {
-                    gameWon = true;
-                }
-            }
+            CheckScore_CTF();
         }
     }
 }

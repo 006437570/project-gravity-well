@@ -14,7 +14,7 @@ public class ArenaManager : MonoBehaviour
     public GameObject[] Weapons;
     public float timeBetweenSpawns;
     private float gunCounter;
-
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -45,16 +45,23 @@ public class ArenaManager : MonoBehaviour
         }
         if(GameManager.instance.gameMode == 1)
         {
-            if(GameManager.instance.CheckScore_Deathmatch() == GameManager.instance.maxScore)
+            if(!GameManager.instance.EndGame)
+            {
+                GameManager.instance.CheckScore_Deathmatch();
+            }
+            if(GameManager.instance.EndGame)
             {
                 StartCoroutine(EndRoundCo());
             }
         }
         if(GameManager.instance.gameMode == 2)
         {
-            if(GameManager.instance.CheckActivePlayers() == 1 && !roundOver)
+            if(!GameManager.instance.EndGame)
             {
-                roundOver = true;
+                GameManager.instance.CheckScore_CTF();
+            }
+            if(GameManager.instance.EndGame)
+            {
                 StartCoroutine(EndRoundCo());
             }
         }

@@ -7,6 +7,7 @@ public class GiveID : MonoBehaviour
 {
     public int numPlayers; //Total number of players in match
     public GameObject[] players; //Array with each of the players
+
     void OnPlayerJoined(PlayerInput playerInput)
     {
         playerInput.gameObject.GetComponent<PlayerHealth>().playerID = playerInput.playerIndex + 1; //gives player an id number

@@ -98,7 +98,20 @@ public class PlayerHealth : MonoBehaviour
         }
     }
 
-    void playerDeath(GameObject playerAttacker)
+    public void playerDeath()
+    {
+        // Plays player death animation when ready
+        // Instantiate(deathAni, transform.position, Quaternion.identity);
+        if (pUDF.weaponSlotFull) {pUDF.dropDead();}
+        playerDead = true; //sets player to dead
+        respawnTimer = respawnCD; //sets respawn timer
+        coll.enabled = false;
+        sr.enabled = false;
+        pc.enabled = false; //turns off player ability to move while dead
+        deathCounter++;
+    }
+
+    public void playerDeath(GameObject playerAttacker)
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
