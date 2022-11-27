@@ -16,10 +16,7 @@ public class respawnManager : MonoBehaviour
     //Moves player to a spawn point
     public void respawnAt(Transform spawnPoint, GameObject player)
     {
-       
-        player.transform.position = spawnPoint.position;
-        
-
+        player.transform.position = spawnPoint.position; 
     }
 
     //Gets a random respawn point for player to go to
