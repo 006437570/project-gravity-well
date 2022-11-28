@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -5,9 +7,9 @@ using UnityEngine;
 public class bulletProjectile : MonoBehaviour
 {
 
-    public float speed; //speed that bullet travels
+    public float speed = 20f; //speed that bullet travels
     public Rigidbody2D rb; //gives bullet rigidbody to give it physics
-    public int dmg; //Damage amount bullet does
+    public int dmg = 1; //Damage amount bullet does
 
     public GameObject playerAttacker; //Player that shot the bullet
 

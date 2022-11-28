@@ -16,12 +16,9 @@ public class fireProjectileGun : MonoBehaviour
 
     public int ammoPerShot;
 
-    [SerializeField] private float burstDelay, shotDelay, bulletSpeed;
+    [SerializeField] private float burstDelay, shotDelay;
 
     private bool isShooting;
-
-    [SerializeField]
-    private int bulletDamage;
 
     void Start()
     {
@@ -40,7 +37,6 @@ public class fireProjectileGun : MonoBehaviour
             {
                 GameObject bullet = bulletPrefab;
                 bullet.GetComponent<bulletProjectile>().playerAttacker = playerAttacker;
-                bullet.GetComponent<bulletProjectile>().speed = bulletSpeed;
                 Instantiate(bullet, firepoint.position, firepoint.rotation);
                 ammo--; // decreases ammo by 1 after shooting
                 yield return new WaitForSeconds(shotDelay);
