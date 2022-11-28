@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
@@ -8,7 +6,7 @@ public class AudioManager : MonoBehaviour
 
     public static AudioManager instance;
 
-    private void Awake()
+    private void Awake() // Creates an Audio Manager instance
     {
         instance = this;
     }
@@ -25,7 +23,7 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    public void playSFX(int soundToPlay)
+    public void playSFX(int soundToPlay) // Handles playing a specific sound effect in the array
     {
         soundEffects[soundToPlay].Stop();
         soundEffects[soundToPlay].Play();

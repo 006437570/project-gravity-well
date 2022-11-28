@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 7880471662396448498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.8591, y: -0.12, z: 0}
-  m_LocalScale: {x: 0.75, y: 0.63, z: 1}
+  m_LocalScale: {x: 0.75, y: 0.62999994, z: 1}
   m_Children:
   - {fileID: 7880471662207310237}
   - {fileID: 5228591803996244923}
@@ -224,6 +224,7 @@ MonoBehaviour:
   killCounter: 0
   maxHealth: 2
   currentHealth: 0
+  isEliminated: 0
   respawnCD: 5
 --- !u!114 &7880471662396448510
 MonoBehaviour:
