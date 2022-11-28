@@ -16,7 +16,7 @@ public class WinScreenController : MonoBehaviour
     void Start() // marks who won in the game
     {
         WinnerText.text = "Player " + (GameManager.instance.lastPlayerNumber + 1) + " Wins the Game!";
-        playerImage.sprite = GameManager.instance.activePlayers[GameManager.instance.lastPlayerNumber].GetComponent<SpriteRenderer>().sprite;
+        //playerImage.sprite = GameManager.instance.activePlayers[GameManager.instance.lastPlayerNumber].GetComponent<SpriteRenderer>().sprite;
     }
 
     public void PlayAgain()
