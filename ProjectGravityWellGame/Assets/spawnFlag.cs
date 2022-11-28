@@ -10,7 +10,7 @@ public class spawnFlag : MonoBehaviour
     [SerializeField]
     private Transform flagSpawn;
 
-    void Start()
+    void Start() // spawns the flag into the arena
     {
         flag.SetActive(true);
         flag.GetComponent<flagRespawn>().sp = flagSpawn;

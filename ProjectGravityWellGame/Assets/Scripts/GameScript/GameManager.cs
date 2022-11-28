@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void AddPlayer(PlayerController newPlayer)
+    public void AddPlayer(PlayerController newPlayer) // add players to both a list and array and assigns id's to them
     {
         if(activePlayers.Count < MaxPlayers)
         {
@@ -74,7 +74,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ActivatePlayers()
+    public void ActivatePlayers() // activates the players
     {
         foreach(PlayerController player in activePlayers)
         {
@@ -83,7 +83,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public int CheckActivePlayers()
+    public int CheckActivePlayers() // checks if there are players active in the hierarchy
     {
         int playerAliveCount = 0;
         for(int i = 0; i < activePlayers.Count; i++)
@@ -96,7 +96,7 @@ public class GameManager : MonoBehaviour
         }
         return playerAliveCount;
     }
-    public void CheckScore_Deathmatch()
+    public void CheckScore_Deathmatch() // checks the deathmatch kills
     {
         EndGame = false;
         for(int i = 0; i < numPlayers; i++)
@@ -110,7 +110,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void CheckScore_CTF()
+    public void CheckScore_CTF() // checks the ctf score
     {
         EndGame = false;
         for(int i = 0; i < numPlayers; i++)
@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GoToNextArena()
+    public void GoToNextArena() // handles the level randomization
     {
         if(!gameWon)
         {
@@ -165,7 +165,7 @@ public class GameManager : MonoBehaviour
             string levelToLoad = levelOrder[0];
             levelOrder.RemoveAt(0);
 
-            foreach(PlayerController player in activePlayers)
+            foreach(PlayerController player in activePlayers) // after a round fill all the players health to full
             {
                 player.gameObject.SetActive(true);
                 player.GetComponent<PlayerHealth>().FillHealth();
@@ -184,7 +184,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartFirstRound()
+    public void StartFirstRound() // starts the first round of the game
     {
         roundWins.Clear();
         foreach(PlayerController player in activePlayers)
@@ -195,7 +195,7 @@ public class GameManager : MonoBehaviour
         GoToNextArena();
     }
 
-    public void AddRoundWin()
+    public void AddRoundWin() // a function that calls on other functions to either add winners for a round or to see if the game is running
     {
         if(gameMode == 0) // gamemode is elimination
         {

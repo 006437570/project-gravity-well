@@ -16,7 +16,7 @@ public class ArenaManager : MonoBehaviour
     private float gunCounter;
     
     // Start is called before the first frame update
-    void Start()
+    void Start() // activates the players and gives them random spawns
     {
         foreach(PlayerController player in GameManager.instance.activePlayers)
         {
@@ -29,13 +29,13 @@ public class ArenaManager : MonoBehaviour
         }
         GameManager.instance.ActivatePlayers();
 
-        gunCounter = timeBetweenSpawns * Random.Range(.75f, 1.25f);
+        gunCounter = timeBetweenSpawns * Random.Range(.75f, 1.25f); // handles random spawning of weapons
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(GameManager.instance.gameMode == 0)
+        if(GameManager.instance.gameMode == 0) // if the game mode is elimination
         {
             if(GameManager.instance.CheckActivePlayers() == 1 && !roundOver)
             {
@@ -43,30 +43,30 @@ public class ArenaManager : MonoBehaviour
                 StartCoroutine(EndRoundCo());
             }
         }
-        if(GameManager.instance.gameMode == 1)
+        if(GameManager.instance.gameMode == 1) // if the game mode is deathmatch
         {
-            if(!GameManager.instance.EndGame)
+            if(!GameManager.instance.EndGame) // check if the game is not over in the game manager
             {
                 GameManager.instance.CheckScore_Deathmatch();
             }
-            if(GameManager.instance.EndGame)
+            if(GameManager.instance.EndGame) // if the game is over start the coroutine
             {
                 StartCoroutine(EndRoundCo());
             }
         }
-        if(GameManager.instance.gameMode == 2)
+        if(GameManager.instance.gameMode == 2) // if the game mode is ctf
         {
-            if(!GameManager.instance.EndGame)
+            if(!GameManager.instance.EndGame) // check if the game is not over in the game manager
             {
                 GameManager.instance.CheckScore_CTF();
             }
-            if(GameManager.instance.EndGame)
+            if(GameManager.instance.EndGame) // if the game is over start the coroutine
             {
                 StartCoroutine(EndRoundCo());
             }
         }
 
-        if(gunCounter > 0)
+        if(gunCounter > 0) // handles the gun respawning
         {
             gunCounter -= Time.deltaTime;
             if(gunCounter <= 0)
@@ -78,7 +78,7 @@ public class ArenaManager : MonoBehaviour
         }
     }
 
-    IEnumerator EndRoundCo()
+    IEnumerator EndRoundCo() // Coroutine that is setup for displaying the win condition screen when reached
     {
         winBar.SetActive(true); // set these two UI elements to true;
         roundCompleteText.SetActive(true);

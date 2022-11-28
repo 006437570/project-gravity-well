@@ -7,7 +7,7 @@ public class CharSelect : MonoBehaviour
 
     [SerializeField] int color1, color2, color3, color4;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // changes the color based on what sprite the player touched
     {
         if(other.tag == "Player")
         {

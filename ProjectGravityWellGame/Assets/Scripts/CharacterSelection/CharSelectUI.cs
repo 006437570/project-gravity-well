@@ -13,7 +13,7 @@ public class CharSelectUI : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // Turns off the join text when the max number of players join the game
     {
         if(GameManager.instance.activePlayers.Count >= GameManager.instance.MaxPlayers)
         {

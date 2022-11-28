@@ -23,7 +23,7 @@ public class StartGameChecker : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void Update() // checks if there are enough players in the zone
     {
         if(playersInZone > 1 && playersInZone == GameManager.instance.activePlayers.Count)
         {
@@ -35,14 +35,14 @@ public class StartGameChecker : MonoBehaviour
                 GameManager.instance.StartFirstRound();
             }
         }
-        else
+        else // set the count down text to false when all of the players are in the area
         {
             startcountText.gameObject.SetActive(false);
             startCounter = timeToStart;
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // check if there are players in the zone then increase the counter
     {
         if(other.tag == "Player")
         {
@@ -50,7 +50,7 @@ public class StartGameChecker : MonoBehaviour
         }
     }
 
-        private void OnTriggerExit2D(Collider2D other)
+        private void OnTriggerExit2D(Collider2D other) // when a player leaves the zone then remove them from the counter
     {
         if(other.tag == "Player")
         {
