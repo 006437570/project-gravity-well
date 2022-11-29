@@ -7,19 +7,21 @@ public class killBox : MonoBehaviour
     // kills the player if they collide with anything that has this script attached
     pickUpDropFire dropWeapon;
 
+    [SerializeField] private AudioSource Oof;
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.gameObject.CompareTag("Player"))
         {
             if(GameManager.instance.gameMode == 0)
             {
-                AudioManager.instance.playSFX(9);
+                Oof.Play();
                 collider.gameObject.GetComponent<pickUpDropFire>().dropDead();
                 collider.gameObject.SetActive(false);
             }
             if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
-                AudioManager.instance.playSFX(9);
+                Oof.Play();
                 collider.GetComponent<PlayerHealth>().playerDeath();
             }
         }
