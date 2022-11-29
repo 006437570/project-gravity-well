@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector] public bool EndGame;
 
+    [SerializeField] private AudioSource victoryScreech;
+
     private void Awake() // on awake prevent the game manager from getting destroyed
     {
         if(instance == null)
@@ -103,6 +105,7 @@ public class GameManager : MonoBehaviour
         {
             if(players[i].GetComponent<PlayerHealth>().killCounter >= maxScore)
             {
+                victoryScreech.Play();
                 EndGame = true;
                 lastPlayerNumber = i;
                 gameWon = true;
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
         {
             if(players[i].GetComponent<PlayerHealth>().scoreCounter >= maxScore)
             {
+                victoryScreech.Play();
                 EndGame = true;
                 lastPlayerNumber = i;
                 gameWon = true;
@@ -204,6 +208,7 @@ public class GameManager : MonoBehaviour
                 roundWins[lastPlayerNumber]++;
                 if(roundWins[lastPlayerNumber] >= pointsToWin)
                 {
+                    victoryScreech.Play();
                     gameWon = true;
                 }
             }
