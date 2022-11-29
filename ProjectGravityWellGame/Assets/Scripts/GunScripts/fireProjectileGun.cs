@@ -44,7 +44,7 @@ public class fireProjectileGun : MonoBehaviour
             yield return new WaitForSeconds(shotDelay);
             isShooting = false;
         }
-        else // if there is no more ammo in the gun then play a sound to indicate that there are no more bullets
+        else if(ammo <= 0) // if there is no more ammo in the gun then play a sound to indicate that there are no more bullets
         {
             AudioManager.instance.playSFX(4);
         }
