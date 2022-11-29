@@ -54,6 +54,8 @@ public class GameSelectButton : MonoBehaviour
 
                 gameManager.gameMode = GameMode; // sets the game mode to whatever gets pressed
 
+                AudioManager.instance.playSFX(8);
+
                 if(GameMode == 0) // sets the text to active or inactive
                 {
                     Elimination.gameObject.SetActive(true);
