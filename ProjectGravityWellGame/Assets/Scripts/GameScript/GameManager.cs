@@ -124,7 +124,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void GoToNextArena() // handles the level randomization
+    public void GoToNextArena() // handles the level randomization if the user wants to add more levels
     {
         if(!gameWon)
         {

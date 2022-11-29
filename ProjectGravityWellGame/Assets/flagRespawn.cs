@@ -18,7 +18,7 @@ public class flagRespawn : MonoBehaviour
         countDown = false;
     }
 
-    void Update()
+    void Update() // handles repspawing of the flag
     {
         if (countDown)
         {   
@@ -61,7 +61,7 @@ public class flagRespawn : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collider) // gives points to whoever places the flag down in the correct spot
     {
         if (collider.gameObject.CompareTag("FlagSpawn"))
         {

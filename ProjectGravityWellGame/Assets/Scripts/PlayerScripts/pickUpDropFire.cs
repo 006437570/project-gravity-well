@@ -36,6 +36,8 @@ public class pickUpDropFire : MonoBehaviour
     [SerializeField]
     private int numInRange = 0;
 
+    GameManager gameManager;
+
     // when the player gets enabled give them access to interact and fire controls
     private void OnEnable()
     {
@@ -61,6 +63,7 @@ public class pickUpDropFire : MonoBehaviour
     // Called in PlayerHealth.cs
     public void dropDead()
     {
+        AudioManager.instance.playSFX(9);
         if (weaponSlotFull)
         {
             weaponSlotFull = false;
@@ -73,7 +76,8 @@ public class pickUpDropFire : MonoBehaviour
             coll.enabled = true;
         }
         despawnScript.equipped = false;
-        despawnScript.countDown = despawnScript.timeToDespawn;
+        //despawnScript.countDown = despawnScript.timeToDespawn;
+        despawnScript.countDown = 2;
     }
 
     // If player is in range of a weapon sets inRange to true

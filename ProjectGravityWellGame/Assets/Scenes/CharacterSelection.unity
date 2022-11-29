@@ -2824,6 +2824,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 7530777994630754643, guid: a6303a58b05bd5449bc8653ae4cb9b2d, type: 3}
+      propertyPath: rolloffMode
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 9125661307913382869, guid: a6303a58b05bd5449bc8653ae4cb9b2d, type: 3}
       propertyPath: m_Name
       value: AudioManager

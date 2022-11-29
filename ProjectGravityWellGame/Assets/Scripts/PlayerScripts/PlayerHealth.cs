@@ -60,20 +60,33 @@ public class PlayerHealth : MonoBehaviour
 
     private void Update()
     {
-        if (isEliminated)
+        if(isEliminated)
         {
+            AudioManager.instance.playSFX(9);
             gameObject.SetActive(false);
         }
 
         // If player is dead, then start respawn timer
         if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
         {
-            if (playerDead)
+            if(playerDead)
             {
                 respawnTimer -= Time.deltaTime;
                 if (respawnTimer <= 0) //when respawn timer hits zero respawn the player
                 {
                     playerRespawn(); //respawns player
+                }
+            }
+        }
+
+        if(GameManager.instance.gameMode == 0 && currentHealth > 0)
+        {
+            if(GameManager.instance.CheckActivePlayers() == 1)
+            {
+                if(pUDF.weaponSlotFull)
+                {
+                    Debug.Log("Drop yer shit");
+                    pUDF.dropDead();
                 }
             }
         }
@@ -92,8 +105,11 @@ public class PlayerHealth : MonoBehaviour
         {
             if(GameManager.instance.gameMode == 0)
             {
+                if(pUDF.weaponSlotFull)
+                {
+                    pUDF.dropDead();
+                }
                 gameObject.SetActive(false);
-                AudioManager.instance.playSFX(9);
             }
             if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
@@ -106,7 +122,10 @@ public class PlayerHealth : MonoBehaviour
     {
         // Plays player death animation when ready
         // Instantiate(deathAni, transform.position, Quaternion.identity);
-        if (pUDF.weaponSlotFull) {pUDF.dropDead();}
+        if (pUDF.weaponSlotFull) 
+        {
+            pUDF.dropDead();
+        }
         playerDead = true; //sets player to dead
         respawnTimer = respawnCD; //sets respawn timer
         coll.enabled = false;
