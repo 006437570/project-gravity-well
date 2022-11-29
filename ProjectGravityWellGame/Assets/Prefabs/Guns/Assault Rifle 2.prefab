@@ -149,7 +149,7 @@ MonoBehaviour:
   ammoPerShot: 4
   burstDelay: 0.1
   shotDelay: 0.1
-  bulletSpeed: 20
+  bulletSpeed: 15
 --- !u!114 &751166567241636417
 MonoBehaviour:
   m_ObjectHideFlags: 0

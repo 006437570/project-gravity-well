@@ -148,7 +148,7 @@ MonoBehaviour:
   ammo: 0
   ammoPerShot: 1
   burstDelay: 0
-  shotDelay: 0.2
+  shotDelay: 0.1
   bulletSpeed: 25
 --- !u!114 &-8517824352688987477
 MonoBehaviour:
