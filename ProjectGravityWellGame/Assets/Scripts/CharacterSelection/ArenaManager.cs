@@ -80,6 +80,7 @@ public class ArenaManager : MonoBehaviour
 
     IEnumerator EndRoundCo() // Coroutine that is setup for displaying the win condition screen when reached
     {
+        AudioManager.instance.playSFX(12);
         winBar.SetActive(true); // set these two UI elements to true;
         roundCompleteText.SetActive(true);
         playerWinText.gameObject.SetActive(true);

@@ -85,11 +85,15 @@ public class PlayerHealth : MonoBehaviour
         if (playerDead) return; //if player is already dead, then do nothing.
 
         currentHealth -= dmg; //Takes damage from bullet
+
+        AudioManager.instance.playSFX(11);
+
         if (currentHealth <= 0) // If the players health hits zero or less, then player dies
         {
             if(GameManager.instance.gameMode == 0)
             {
                 gameObject.SetActive(false);
+                AudioManager.instance.playSFX(9);
             }
             if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
@@ -109,6 +113,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
+        AudioManager.instance.playSFX(9);
     }
 
     public void playerDeath(GameObject playerAttacker)
@@ -129,6 +134,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
+        AudioManager.instance.playSFX(9);
     }
 
     void playerRespawn()
@@ -140,6 +146,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
         currentHealth = maxHealth; //resets player health
+        AudioManager.instance.playSFX(10);
     }
 
     public void FillHealth()

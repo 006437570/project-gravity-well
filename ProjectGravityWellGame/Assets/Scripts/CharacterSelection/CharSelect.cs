@@ -13,6 +13,7 @@ public class CharSelect : MonoBehaviour
         {
             PlayerController thePlayer = other.GetComponent<PlayerController>();
             thePlayer.gameObject.GetComponent<SpriteRenderer>().color = new Color(color1, color2, color3, color4);
+            AudioManager.instance.playSFX(16);
         }
     }
 }

@@ -77,6 +77,7 @@ public class flagRespawn : MonoBehaviour
             gameObject.transform.position += temp;
             scored = true;
             flagCD = flagTime;
+            AudioManager.instance.playSFX(14);
         }
     }
 }

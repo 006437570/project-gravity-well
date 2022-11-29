@@ -113,6 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isTouchingGround || isTouchingGun || isTouchingPlayer && !isJumping)
         {
+            AudioManager.instance.playSFX(15);
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             isJumping = true;
         }
