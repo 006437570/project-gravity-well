@@ -94,7 +94,7 @@ public class PlayerHealth : MonoBehaviour
             if(GameManager.instance.gameMode == 1)
             {
                 playerDeath(playerAttacker); //kills player
-            }        
+            } 
         }
     }
 

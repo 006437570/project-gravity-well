@@ -9,8 +9,14 @@ public class killBox : MonoBehaviour
     {
         if (collider.gameObject.CompareTag("Player"))
         {
-            collider.GetComponent<PlayerHealth>().playerDeath();
-            
+            if(GameManager.instance.gameMode == 0)
+            {
+                collider.gameObject.SetActive(false);
+            }
+            if(GameManager.instance.gameMode == 2)
+            {
+                collider.GetComponent<PlayerHealth>().playerDeath();
+            }
         }
         else if (collider.gameObject.CompareTag("GunHolder"))
         {
