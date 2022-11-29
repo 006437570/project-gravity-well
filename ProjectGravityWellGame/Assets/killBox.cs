@@ -13,7 +13,7 @@ public class killBox : MonoBehaviour
             {
                 collider.gameObject.SetActive(false);
             }
-            if(GameManager.instance.gameMode == 2)
+            if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
                 collider.GetComponent<PlayerHealth>().playerDeath();
             }

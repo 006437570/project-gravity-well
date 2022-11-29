@@ -91,7 +91,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 gameObject.SetActive(false);
             }
-            if(GameManager.instance.gameMode == 1)
+            if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
                 playerDeath(playerAttacker); //kills player
             } 
