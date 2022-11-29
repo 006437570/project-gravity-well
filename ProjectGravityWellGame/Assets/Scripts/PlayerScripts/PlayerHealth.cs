@@ -33,12 +33,12 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D coll;
 
-    // Death animation effect goes here when ready :)
-    // public GameObject deathAni;
+    public GameObject healthBar;
 
     void Start()
     {
         transform.position = startPos;  //When player joins spawns them at predetermined spawn point
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
     }
 
     //Also when player joins
@@ -98,6 +98,8 @@ public class PlayerHealth : MonoBehaviour
         if (playerDead) return; //if player is already dead, then do nothing.
 
         currentHealth -= dmg; //Takes damage from bullet
+
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
 
         AudioManager.instance.playSFX(11);
 
@@ -165,6 +167,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
         currentHealth = maxHealth; //resets player health
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         AudioManager.instance.playSFX(10);
     }
 
