@@ -66,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
         }
 
         // If player is dead, then start respawn timer
-        if(GameManager.instance.gameMode == 1)
+        if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
         {
             if (playerDead)
             {
