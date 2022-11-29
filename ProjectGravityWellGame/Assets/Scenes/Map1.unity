@@ -3415,6 +3415,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Flag
       objectReference: {fileID: 0}
+    - target: {fileID: 2613146702451251746, guid: 96770299ea8ad42da8e3e8fee4b12af2, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2613146702451251746, guid: 96770299ea8ad42da8e3e8fee4b12af2, type: 3}
+      propertyPath: m_TagString
+      value: Weapon
+      objectReference: {fileID: 0}
     - target: {fileID: 8308357741873247293, guid: 96770299ea8ad42da8e3e8fee4b12af2, type: 3}
       propertyPath: m_RootOrder
       value: 12

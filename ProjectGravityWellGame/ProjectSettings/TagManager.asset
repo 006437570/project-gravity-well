@@ -16,6 +16,7 @@ TagManager:
   - GunHolder
   - FlagPoint
   - FlagSpawn
+  - Flag
   layers:
   - Default
   - TransparentFX
