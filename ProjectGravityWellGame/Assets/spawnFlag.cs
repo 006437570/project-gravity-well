@@ -5,7 +5,7 @@ using UnityEngine;
 public class spawnFlag : MonoBehaviour
 {
     [SerializeField]
-    private GameObject flag;
+    public GameObject flag;
 
     [SerializeField]
     private Transform flagSpawn;

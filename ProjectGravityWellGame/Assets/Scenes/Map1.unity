@@ -5365,6 +5365,7 @@ GameObject:
   - component: {fileID: 1890890060}
   - component: {fileID: 1890890062}
   - component: {fileID: 1890890061}
+  - component: {fileID: 1890890063}
   m_Layer: 0
   m_Name: flagSP
   m_TagString: FlagSpawn
@@ -5426,6 +5427,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1890890063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890890059}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ab730551847e864a972e5600b811ad2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flag: {fileID: 1293090366}
 --- !u!1 &1907145389
 GameObject:
   m_ObjectHideFlags: 0

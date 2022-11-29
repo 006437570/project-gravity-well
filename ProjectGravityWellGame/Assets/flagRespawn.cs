@@ -76,7 +76,14 @@ public class flagRespawn : MonoBehaviour
             Vector3 temp = new Vector3(1000f,0,0);
             gameObject.transform.position += temp;
             scored = true;
-            flagCD = flagTime;
+            if(playerHeld.GetComponent<PlayerHealth>().scoreCounter >= GameManager.instance.maxScore)
+            {
+                flagCD = 9999999999999999999;
+            }
+            else
+            {
+                flagCD = flagTime;
+            }
             AudioManager.instance.playSFX(14);
         }
     }
