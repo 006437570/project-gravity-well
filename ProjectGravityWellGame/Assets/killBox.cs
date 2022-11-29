@@ -13,14 +13,14 @@ public class killBox : MonoBehaviour
         {
             if(GameManager.instance.gameMode == 0)
             {
+                AudioManager.instance.playSFX(9);
                 collider.gameObject.GetComponent<pickUpDropFire>().dropDead();
                 collider.gameObject.SetActive(false);
-                AudioManager.instance.playSFX(9);
             }
             if(GameManager.instance.gameMode == 1 || GameManager.instance.gameMode == 2)
             {
-                collider.GetComponent<PlayerHealth>().playerDeath();
                 AudioManager.instance.playSFX(9);
+                collider.GetComponent<PlayerHealth>().playerDeath();
             }
         }
         if (collider.gameObject.CompareTag("Weapon"))

@@ -74,10 +74,10 @@ public class pickUpDropFire : MonoBehaviour
                 rb.isKinematic = false;
             }
             coll.enabled = true;
+            despawnScript.equipped = false;
+            //despawnScript.countDown = despawnScript.timeToDespawn;
+            despawnScript.countDown = 2;
         }
-        despawnScript.equipped = false;
-        //despawnScript.countDown = despawnScript.timeToDespawn;
-        despawnScript.countDown = 2;
     }
 
     // If player is in range of a weapon sets inRange to true
