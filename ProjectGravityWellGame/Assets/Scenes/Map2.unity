@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Box Drone (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.620813
@@ -318,6 +322,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Small Shelf
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -479,7 +487,7 @@ GameObject:
   - component: {fileID: 248930527}
   m_Layer: 0
   m_Name: PlayerPlats
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -685,8 +693,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 531432142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.0206, y: -0.0137, z: 0}
+  m_LocalScale: {x: 1.6272846, y: 1.6272846, z: 1.6272846}
   m_Children:
   - {fileID: 857893108}
   - {fileID: 842396055}
@@ -731,7 +739,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -748,7 +756,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 8
+  orthographic size: 13
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -922,6 +930,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Drone (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -1271,6 +1283,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -1368,6 +1384,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Drone (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -1814,6 +1834,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -2068,6 +2092,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -2165,6 +2193,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Drone
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -2361,6 +2393,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Drone (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -2587,6 +2623,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Drone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 3.4802032
@@ -2684,6 +2724,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Drone (5)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -2994,6 +3038,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Center Platform
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
 --- !u!4 &1502215005 stripped
@@ -3235,8 +3283,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1790629241}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0108, y: -0.0026, z: 0}
-  m_LocalScale: {x: 0.88755906, y: 0.8850383, z: 0.3889}
+  m_LocalPosition: {x: 0.0383, y: -0.0179, z: 0}
+  m_LocalScale: {x: 1.4443114, y: 1.4402094, z: 0.63285106}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
@@ -3308,6 +3356,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -3350,7 +3402,7 @@ GameObject:
   - component: {fileID: 1898831384}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3441,6 +3493,10 @@ PrefabInstance:
     - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Name
       value: Small Shelf (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
       objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
@@ -3610,6 +3666,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -3708,6 +3768,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Small Shelf (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6835432533743083370, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
+      propertyPath: m_TagString
+      value: Terrain
+      objectReference: {fileID: 0}
     - target: {fileID: 6835432533743083371, guid: da65bfa5747243e459b8a51d18f0f022, type: 3}
       propertyPath: m_Size.x
       value: 2.2261415
@@ -3763,8 +3827,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1984893945}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.0093, y: 0.0142, z: 0}
-  m_LocalScale: {x: 0.6216585, y: 0.6066692, z: 1}
+  m_LocalPosition: {x: 0.0358, y: 0.0093, z: 0}
+  m_LocalScale: {x: 1.0116154, y: 0.9872235, z: 1.6272846}
   m_Children:
   - {fileID: 1502215005}
   - {fileID: 82584324}

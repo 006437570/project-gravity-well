@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour
     {
         if(activePlayers.Count < MaxPlayers)
         {
-            newPlayer.gameObject.GetComponent<PlayerHealth>().playerID = index + 1;
+            newPlayer.gameObject.GetComponent<PlayerHealth>().playerID = index;
             activePlayers.Add(newPlayer);
             index++;
             players[numPlayers] = newPlayer.gameObject;
