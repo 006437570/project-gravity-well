@@ -137,14 +137,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f44095f646c84399979c301045171a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFlag: 0
   BlickySoundEffect: {fileID: 383366294329194811}
   firepoint: {fileID: 7164165844512407777}
   bulletPrefab: {fileID: 6270052310437710564, guid: 92b68a0b345024c7f8ab771f9ca0af92, type: 3}
   magazine: 12
+  bulletDamage: 1
   ammo: 0
   ammoPerShot: 3
   burstDelay: 0.1
   shotDelay: 0.1
+  bulletSpeed: 20
 --- !u!114 &751166567241636417
 MonoBehaviour:
   m_ObjectHideFlags: 0

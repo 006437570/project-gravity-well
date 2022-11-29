@@ -70,13 +70,15 @@ public class flagRespawn : MonoBehaviour
 
         if (collider.gameObject.CompareTag("FlagPoint") && !gameObject.GetComponent<weaponDespawn>().equipped)
         {
-            Debug.Log(playerHeld.GetComponent<PlayerHealth>().playerID);
-            playerHeld.GetComponent<PlayerHealth>().scoreCounter++;
-            Debug.Log("Score is: " + playerHeld.GetComponent<PlayerHealth>().scoreCounter);
-            Vector3 temp = new Vector3(1000f,0,0);
-            gameObject.transform.position += temp;
-            scored = true;
-            flagCD = flagTime;
+            if (!scored)
+            {
+                Vector3 temp = new Vector3(1000f,0,0);
+                gameObject.transform.position += temp;
+                Debug.Log(playerHeld.GetComponent<PlayerHealth>().playerID);
+                playerHeld.GetComponent<PlayerHealth>().scoreCounter++;
+                scored = true;
+                flagCD = flagTime;
+            }
         }
     }
 }

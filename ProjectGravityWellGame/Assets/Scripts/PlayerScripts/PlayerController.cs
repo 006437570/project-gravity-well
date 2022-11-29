@@ -128,8 +128,8 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
-        AudioManager.instance.playSFX(2);
         transform.Rotate(180f, 0f, 0f);
+        AudioManager.instance.playSFX(2);
     }
 
     // Checks if the player is colliding with objects on the map and if so then set isJumping to false
