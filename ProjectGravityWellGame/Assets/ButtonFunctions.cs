@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class ButtonFunctions : MonoBehaviour
 {
+
+    [SerializeField] private AudioSource Hover;
+
+    [SerializeField] private AudioSource onClick;
+
     public void HoverSound() 
     {
-        AudioManager.instance.playSFX(5);
+        Hover.Play();
     }
     
     public void OnClick() 
     {
-        AudioManager.instance.playSFX(6);
+        onClick.Play();
     }
 }

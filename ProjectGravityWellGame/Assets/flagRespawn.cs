@@ -12,6 +12,8 @@ public class flagRespawn : MonoBehaviour
 
     public GameObject playerHeld;
 
+    [SerializeField] AudioSource ScorePoint;
+
     void Start()
     {
         respawnCD = respawnTime;
@@ -84,7 +86,7 @@ public class flagRespawn : MonoBehaviour
             {
                 flagCD = flagTime;
             }
-            AudioManager.instance.playSFX(14);
+            ScorePoint.Play();
         }
     }
 }

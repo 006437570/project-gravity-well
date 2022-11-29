@@ -38,6 +38,8 @@ public class pickUpDropFire : MonoBehaviour
 
     GameManager gameManager;
 
+    [SerializeField] private AudioSource DeadSound;
+
     // when the player gets enabled give them access to interact and fire controls
     private void OnEnable()
     {
@@ -63,7 +65,7 @@ public class pickUpDropFire : MonoBehaviour
     // Called in PlayerHealth.cs
     public void dropDead()
     {
-        AudioManager.instance.playSFX(9);
+        DeadSound.Play();
         if (weaponSlotFull)
         {
             weaponSlotFull = false;

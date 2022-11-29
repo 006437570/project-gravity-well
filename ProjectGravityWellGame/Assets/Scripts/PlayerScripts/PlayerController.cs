@@ -37,6 +37,9 @@ public class PlayerController : MonoBehaviour
     // x Direction player faces
     bool facingRight = true;
 
+    [SerializeField] private AudioSource JumpSoundEffect;
+
+    [SerializeField] private AudioSource GravitySwitching;
 
     void Start()
     {
@@ -113,7 +116,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isTouchingGround || isTouchingGun || isTouchingPlayer && !isJumping)
         {
-            AudioManager.instance.playSFX(15);
+            JumpSoundEffect.Play();
             rb.velocity = new Vector2(rb.velocity.x, jumpSpeed);
             isJumping = true;
         }
@@ -129,7 +132,7 @@ public class PlayerController : MonoBehaviour
     // Flips player vertically
     void flipY()
     {
-        AudioManager.instance.playSFX(2);
+        GravitySwitching.Play();
         transform.Rotate(180f, 0f, 0f);
     }
 

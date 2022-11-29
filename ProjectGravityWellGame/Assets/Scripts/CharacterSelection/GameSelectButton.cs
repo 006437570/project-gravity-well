@@ -22,6 +22,8 @@ public class GameSelectButton : MonoBehaviour
 
     GameManager gameManager;
 
+    [SerializeField] private AudioSource Button;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,7 +56,7 @@ public class GameSelectButton : MonoBehaviour
 
                 gameManager.gameMode = GameMode; // sets the game mode to whatever gets pressed
 
-                AudioManager.instance.playSFX(8);
+                Button.Play();
 
                 if(GameMode == 0) // sets the text to active or inactive
                 {

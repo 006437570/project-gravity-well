@@ -33,6 +33,10 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D coll;
 
+
+    [SerializeField] private AudioSource Death, DMG, respawn;
+
+
     // Death animation effect goes here when ready :)
     // public GameObject deathAni;
 
@@ -62,7 +66,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if(isEliminated)
         {
-            AudioManager.instance.playSFX(9);
+            Death.Play();
             gameObject.SetActive(false);
         }
 
@@ -99,7 +103,7 @@ public class PlayerHealth : MonoBehaviour
 
         currentHealth -= dmg; //Takes damage from bullet
 
-        AudioManager.instance.playSFX(11);
+        DMG.Play();
 
         if (currentHealth <= 0) // If the players health hits zero or less, then player dies
         {
@@ -132,7 +136,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
-        AudioManager.instance.playSFX(9);
+        Death.Play();
     }
 
     public void playerDeath(GameObject playerAttacker)
@@ -153,7 +157,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
-        AudioManager.instance.playSFX(9);
+        Death.Play();
     }
 
     void playerRespawn()
@@ -165,7 +169,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
         currentHealth = maxHealth; //resets player health
-        AudioManager.instance.playSFX(10);
+        respawn.Play();
     }
 
     public void FillHealth()

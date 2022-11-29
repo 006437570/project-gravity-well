@@ -14,6 +14,8 @@ public class ArenaManager : MonoBehaviour
     public GameObject[] Weapons;
     public float timeBetweenSpawns;
     private float gunCounter;
+
+    [SerializeField] private AudioSource WinnerSound;
     
     // Start is called before the first frame update
     void Start() // activates the players and gives them random spawns
@@ -80,7 +82,7 @@ public class ArenaManager : MonoBehaviour
 
     IEnumerator EndRoundCo() // Coroutine that is setup for displaying the win condition screen when reached
     {
-        AudioManager.instance.playSFX(12);
+        WinnerSound.Play();
         winBar.SetActive(true); // set these two UI elements to true;
         roundCompleteText.SetActive(true);
         playerWinText.gameObject.SetActive(true);
