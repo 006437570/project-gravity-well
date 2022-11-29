@@ -126,14 +126,16 @@ public class PlayerController : MonoBehaviour
     void flipX()
     {
         transform.Rotate(0f, 180f, 0f);
+        gameObject.GetComponentInChildren<Canvas>().transform.Rotate(0f, 180f, 0f);
         facingRight = !facingRight;
     }
 
     // Flips player vertically
-    void flipY()
+    public void flipY()
     {
         GravitySwitching.Play();
         transform.Rotate(180f, 0f, 0f);
+        gameObject.GetComponentInChildren<Canvas>().transform.Rotate(180f, 0f, 0f);
     }
 
     // Checks if the player is colliding with objects on the map and if so then set isJumping to false

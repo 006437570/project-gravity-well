@@ -6,7 +6,7 @@ public class weaponDespawn : MonoBehaviour
 {
     // is weapon equipped on a player
     public bool equipped;
-    public float timeToDespawn = 20, countDown;
+    public float timeToDespawn, countDown;
 
     // when weapon spawns begin despawn timer
     private void Awake()

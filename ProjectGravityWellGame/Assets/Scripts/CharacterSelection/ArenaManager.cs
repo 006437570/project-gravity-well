@@ -11,9 +11,9 @@ public class ArenaManager : MonoBehaviour
     public TMP_Text playerWinText;
     public GameObject winBar, roundCompleteText;
 
-    public GameObject[] Weapons;
+    /*public GameObject[] Weapons;
     public float timeBetweenSpawns;
-    private float gunCounter;
+    private float gunCounter;*/
 
     [SerializeField] private AudioSource WinnerSound;
     
@@ -31,7 +31,7 @@ public class ArenaManager : MonoBehaviour
         }
         GameManager.instance.ActivatePlayers();
 
-        gunCounter = timeBetweenSpawns * Random.Range(.75f, 1.25f); // handles random spawning of weapons
+        //gunCounter = timeBetweenSpawns * Random.Range(.75f, 1.25f); // handles random spawning of weapons
     }
 
     // Update is called once per frame
@@ -68,6 +68,7 @@ public class ArenaManager : MonoBehaviour
             }
         }
 
+/*
         if(gunCounter > 0) // handles the gun respawning
         {
             gunCounter -= Time.deltaTime;
@@ -77,7 +78,7 @@ public class ArenaManager : MonoBehaviour
                 Instantiate(Weapons[Random.Range(0, Weapons.Length)], spawnPoints[randomPoint].position, spawnPoints[randomPoint].rotation);
                 gunCounter = timeBetweenSpawns * Random.Range(.75f, 1.25f);
             }
-        }
+        }*/
     }
 
     IEnumerator EndRoundCo() // Coroutine that is setup for displaying the win condition screen when reached

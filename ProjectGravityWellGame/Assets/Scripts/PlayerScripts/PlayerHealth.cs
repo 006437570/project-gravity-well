@@ -33,16 +33,17 @@ public class PlayerHealth : MonoBehaviour
     private SpriteRenderer sr;
     private Collider2D coll;
 
+    [SerializeField]
+    private GameObject canvas;
+
+    public GameObject healthBar;
 
     [SerializeField] private AudioSource Death, DMG, respawn;
-
-
-    // Death animation effect goes here when ready :)
-    // public GameObject deathAni;
 
     void Start()
     {
         transform.position = startPos;  //When player joins spawns them at predetermined spawn point
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
     }
 
     //Also when player joins
@@ -102,6 +103,7 @@ public class PlayerHealth : MonoBehaviour
         if (playerDead) return; //if player is already dead, then do nothing.
 
         currentHealth -= dmg; //Takes damage from bullet
+        healthBar.GetComponent<HealthBar>().SetHealth(currentHealth);
 
         DMG.Play();
 
@@ -136,6 +138,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
+        canvas.GetComponent<Canvas>().enabled = false;
         Death.Play();
     }
 
@@ -157,6 +160,7 @@ public class PlayerHealth : MonoBehaviour
         sr.enabled = false;
         pc.enabled = false; //turns off player ability to move while dead
         deathCounter++;
+        canvas.GetComponent<Canvas>().enabled = false;
         Death.Play();
     }
 
@@ -168,7 +172,20 @@ public class PlayerHealth : MonoBehaviour
         coll.enabled = true;
         sr.enabled = true;
         pc.enabled = true; //gives player ability to move again
+        healthBar.GetComponent<HealthBar>().SetMaxHealth(maxHealth);
         currentHealth = maxHealth; //resets player health
+        canvas.GetComponent<Canvas>().enabled = true;
+
+        if (pc.jumpSpeed == -12)
+        {
+            pc.rb.gravityScale = -pc.rb.gravityScale;
+            pc.rb.velocity = new Vector2(0.0f, -1.0f);
+            pc.jumpSpeed = 12;
+            pc.flipY();
+
+
+        }
+
         respawn.Play();
     }
 

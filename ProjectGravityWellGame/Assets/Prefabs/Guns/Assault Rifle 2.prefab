@@ -143,11 +143,13 @@ MonoBehaviour:
   OOM: {fileID: -433054756137919281}
   firepoint: {fileID: 7164165844512407777}
   bulletPrefab: {fileID: 6270052310437710564, guid: 92b68a0b345024c7f8ab771f9ca0af92, type: 3}
-  magazine: 12
+  magazine: 20
+  bulletDamage: 5
   ammo: 0
-  ammoPerShot: 3
+  ammoPerShot: 4
   burstDelay: 0.1
   shotDelay: 0.1
+  bulletSpeed: 20
 --- !u!114 &751166567241636417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -161,7 +163,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   equipped: 0
-  timeToDespawn: 5
+  timeToDespawn: 30
   countDown: 0
 --- !u!82 &383366294329194811
 AudioSource:

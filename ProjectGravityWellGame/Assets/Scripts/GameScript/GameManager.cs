@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int lastPlayerNumber;
 
     public int pointsToWin;
-    private List<int> roundWins = new List<int>();
+    public List<int> roundWins = new List<int>();
 
     public GiveID GiveID; // For setting up player ID's
 
@@ -65,6 +65,7 @@ public class GameManager : MonoBehaviour
         if(activePlayers.Count < MaxPlayers)
         {
             newPlayer.gameObject.GetComponent<PlayerHealth>().playerID = index;
+            newPlayer.gameObject.GetComponentInChildren<ScoreBar>().gameManager = this;
             activePlayers.Add(newPlayer);
             index++;
             players[numPlayers] = newPlayer.gameObject;
@@ -82,6 +83,14 @@ public class GameManager : MonoBehaviour
         {
             player.gameObject.SetActive(true);
             player.GetComponent<PlayerHealth>().FillHealth();
+            player.GetComponentInChildren<HealthBar>().SetMaxHealth(20);
+            if (player.GetComponent<PlayerController>().jumpSpeed == -12)
+            {
+            player.GetComponent<PlayerController>().rb.gravityScale = -player.GetComponent<PlayerController>().rb.gravityScale;
+            player.GetComponent<PlayerController>().rb.velocity = new Vector2(0.0f, -1.0f);
+            player.GetComponent<PlayerController>().jumpSpeed = 12;
+            player.GetComponent<PlayerController>().flipY();
+            }
         }
     }
 
@@ -206,6 +215,7 @@ public class GameManager : MonoBehaviour
             if(CheckActivePlayers() == 1)
             {
                 roundWins[lastPlayerNumber]++;
+                players[lastPlayerNumber].GetComponentInChildren<ScoreBar>().slider.value = roundWins[lastPlayerNumber];
                 if(roundWins[lastPlayerNumber] >= pointsToWin)
                 {
                     victoryScreech.Play();
